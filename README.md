@@ -30,7 +30,7 @@ Have you ever tried to share music with a friend but they didn’t use the same 
 
 ### Class Diagram Description
 
-[wip]
+[Link to Class Diagram Description](docs/uml-description/uml-description.md)
 
 ## Scrum Roles
 * **DevOps/Product Owner:** Wes Reed
