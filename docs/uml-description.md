@@ -1,4 +1,4 @@
-# UML Diagram Description
+# Class Diagram Description
 
 ## Overview
 
