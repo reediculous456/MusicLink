@@ -31,17 +31,17 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
 
+    - name: Run Lint
+      run: ./gradlew lint
+
     - name: Run Unit Tests
-      run: ./gradlew lint test
+      run: ./gradlew test
+
+    - name: Run Connected Android Tests
+      run: ./gradlew connectedAndroidTest
 
     - name: Upload build reports
       uses: actions/upload-artifact@v2
       with:
         name: reports
         path: app/build/reports
-
-    - name: Upload test results
-      uses: actions/upload-artifact@v2
-      with:
-        name: unit test results
-        path: app/build/test-results
