@@ -1,4 +1,4 @@
-# Music Link
+# Music Link [![Android CI](https://github.com/reediculous456/MusicLink/workflows/Android%20CI/badge.svg)](https://github.com/reediculous456/MusicLink/actions)
 
 Design Document
 
