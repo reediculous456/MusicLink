@@ -1,7 +1,7 @@
 ---
 name: Research topic
 about: Add a task to research something
-labels: Feature
+labels: Research
 ---
 ### RESEARCH
 ---------------------------------------------
