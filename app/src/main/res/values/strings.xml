@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Music Link</string>
+    <string name="ad_closer">Ad closer</string>
+    <string name="share_a_playlist_with_others">Share a playlist with others</string>
+    <string name="search_for_a_song_to_add_to_a_playlist">Search for a song to add to a playlist</string>
+    <string name="profile_button">Profile button</string>
+    <string name="options_for_user_not_on_main_screen">Options for user not on main screen</string>
+    <string name="add_a_playlist">Add a playlist</string>
+    <string name="library_of_playlists">Library of playlists</string>
+    <string name="playlist">Playlist</string>
 </resources>
