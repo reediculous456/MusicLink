@@ -2,7 +2,9 @@ package edu.uc.reedws.musiclink
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.content.Intent
 import edu.uc.reedws.musiclink.ui.main.MainFragment
+import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity() {
 
