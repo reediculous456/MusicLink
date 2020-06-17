@@ -33,7 +33,7 @@
     <ListView
         android:id="@+id/listOfSongs"
         android:layout_width="match_parent"
-        android:layout_height="379dp"
+        android:layout_height="430dp"
         android:dividerHeight="1dp"
         android:verticalSpacing="4dp" />
 
