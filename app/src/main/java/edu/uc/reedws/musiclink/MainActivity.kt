@@ -20,9 +20,9 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,SearchActivity::class.java)
             startActivity(intent)
         }
-        libraryButton.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
-        }
+//        libraryButton.setOnClickListener {
+//            val intent = Intent(this,MainActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 }
