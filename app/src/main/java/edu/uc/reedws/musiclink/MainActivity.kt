@@ -14,9 +14,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
+        //Mock Data
         title = "Playlist Library"
         val arrayAdapter: ArrayAdapter<*>
-        val playLists = arrayOf(
+        val playLists: MutableList<String> = arrayListOf(
             "Rock",
             "Pop",
             "Jazz",
@@ -39,6 +40,9 @@ class MainActivity : AppCompatActivity() {
         searchButton.setOnClickListener {
             val intent = Intent(this,SearchActivity::class.java)
             startActivity(intent)
+        }
+        addPlaylistOrSongButton.setOnClickListener {
+
         }
 //        libraryButton.setOnClickListener {
 //            val intent = Intent(this,MainActivity::class.java)

@@ -23,7 +23,7 @@
             android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/addPlaylistButton"
+            android:id="@+id/addPlaylistOrSongButton"
             android:layout_width="match_parent"
             android:layout_height="69dp"
             android:contentDescription="@string/add"
