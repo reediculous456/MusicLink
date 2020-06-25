@@ -48,15 +48,15 @@ class MainActivity : AppCompatActivity() {
         }
         val addPlaylistDialogBtn = findViewById<FloatingActionButton>(R.id.addPlaylistOrSongButton)
         addPlaylistDialogBtn.setOnClickListener {
-            showAlertDialog()
+            showAlertDialog(playLists as ArrayList<String>)
         }
-//        libraryButton.setOnClickListener {
-//            val intent = Intent(this,MainActivity::class.java)
-//            startActivity(intent)
-//        }
+        libraryButton.setOnClickListener {
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
-    private fun showAlertDialog() {
+    private fun showAlertDialog(arrayList: ArrayList<String>) {
 
         val addPlaylistDialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
@@ -64,7 +64,11 @@ class MainActivity : AppCompatActivity() {
         val dialogLayout = inflater.inflate(R.layout.add_playlist_dialog, null)
         val editText  = dialogLayout.findViewById<EditText>(R.id.editText)
         addPlaylistDialogBuilder.setView(dialogLayout)
-        addPlaylistDialogBuilder.setPositiveButton("Done") { dialogInterface, i -> Toast.makeText(applicationContext, "You added " + editText.text.toString(), Toast.LENGTH_SHORT).show() }
+        addPlaylistDialogBuilder.setPositiveButton("Done") { dialogInterface, i -> Toast.makeText(applicationContext, "You added " + editText.text.toString(), Toast.LENGTH_SHORT).show()
+        val newPlaylist = editText.text
+            arrayList.add(newPlaylist.toString())
+        }
+        addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, id -> dialog.cancel()}
 
         addPlaylistDialogBuilder.show()
     }
