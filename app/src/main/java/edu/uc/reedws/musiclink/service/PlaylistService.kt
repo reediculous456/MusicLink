@@ -17,7 +17,13 @@ class PlaylistService(application: Application) {
         return MutableLiveData()
     }
 
-    private suspend fun savePlaylist(playlist: PlaylistDTO) {
+    fun createPlaylist(name: String): PlaylistDTO {
+        var playlist = PlaylistDTO(name)
+        savePlaylist(playlist)
+        return playlist
+    }
+
+    private fun savePlaylist(playlist: PlaylistDTO) {
         try {
             var localPlaylistDAO = getLocalPlaylistDAO()
             localPlaylistDAO.savePlaylist(playlist!!)
@@ -28,7 +34,6 @@ class PlaylistService(application: Application) {
 
     internal fun getLocalPlaylistDAO(): ILocalPlaylistDAO {
         val db = Room.databaseBuilder(application, AppDatabase::class.java, "db").build()
-        val localPlaylistDAO = db.localPlaylistDAO()
-        return localPlaylistDAO
+        return db.localPlaylistDAO()
     }
 }
