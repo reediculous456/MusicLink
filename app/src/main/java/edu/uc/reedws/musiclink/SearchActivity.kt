@@ -10,6 +10,7 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.search_screen)
 
+        // Opens the Main or Playlist Library Screen
         libraryButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

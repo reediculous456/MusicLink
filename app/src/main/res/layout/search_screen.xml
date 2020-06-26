@@ -30,7 +30,8 @@
             android:layout_height="match_parent"
             android:layout_weight=".25"
             android:contentDescription="@string/search"
-            android:src="@android:drawable/ic_menu_search" />
+            android:src="@android:drawable/ic_menu_search"
+            android:tint="#0C0B0B" />
 
         <ImageButton
             android:id="@+id/libraryButton"
@@ -38,7 +39,8 @@
             android:layout_height="match_parent"
             android:layout_weight=".25"
             android:contentDescription="@string/library"
-            android:src="@drawable/ic_library" />
+            android:src="@drawable/ic_library"
+            android:tint="#0C0B0B" />
 
         <ImageButton
             android:id="@+id/profileButton"
@@ -46,7 +48,8 @@
             android:layout_height="match_parent"
             android:layout_weight=".25"
             android:contentDescription="@string/profile"
-            android:src="@drawable/ic_profile" />
+            android:src="@drawable/ic_profile"
+            android:tint="#0C0B0B" />
 
         <ImageButton
             android:id="@+id/optionsButton"
@@ -54,7 +57,8 @@
             android:layout_height="match_parent"
             android:layout_weight=".25"
             android:contentDescription="@string/options"
-            android:src="@drawable/ic_settings" />
+            android:src="@drawable/ic_settings"
+            android:tint="#0C0B0B" />
     </LinearLayout>
 
 </LinearLayout>

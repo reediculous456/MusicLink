@@ -39,23 +39,24 @@ class MainActivity : AppCompatActivity() {
                     .replace(R.id.mainScreen, MainFragment.newInstance())
                     .commitNow()
         }
+        // Opens Search Screen
         searchButton.setOnClickListener {
             val intent = Intent(this,SearchActivity::class.java)
             startActivity(intent)
         }
-        addPlaylistOrSongButton.setOnClickListener {
-
-        }
+        // Opens Dialog Screen to add a playlist
         val addPlaylistDialogBtn = findViewById<FloatingActionButton>(R.id.addPlaylistOrSongButton)
         addPlaylistDialogBtn.setOnClickListener {
             showAlertDialog(playLists as ArrayList<String>)
         }
+        // Opens the Main or Playlist Library Screen
         libraryButton.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
     }
 
+    // Method to show Dialog Screen for adding a new playlist
     private fun showAlertDialog(arrayList: ArrayList<String>) {
 
         val addPlaylistDialogBuilder = AlertDialog.Builder(this)
