@@ -8,31 +8,29 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import edu.uc.reedws.musiclink.ui.main.ApplicationViewModel
 import edu.uc.reedws.musiclink.ui.main.MainFragment
 import kotlinx.android.synthetic.main.main_activity.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity() : AppCompatActivity() {
+    private lateinit var viewModel: ApplicationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+        viewModel = ViewModelProvider(this).get(ApplicationViewModel::class.java);
 
-        //Mock Data
-        val playLists: MutableList<String> = arrayListOf(
-            "Rock",
-            "Pop",
-            "Jazz",
-            "Indie",
-            "Metal",
-            "Classical"
-        )
         val listView = findViewById<ListView>(R.id.listOfPlayLists)
-        val arrayAdapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_list_item_1, playLists
-        )
-        listView.adapter = arrayAdapter
+
+        viewModel.playlists.observe(this, Observer {
+            playLists -> listView.adapter = ArrayAdapter(
+                this,
+                android.R.layout.simple_list_item_1, playLists
+            )
+        })
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
@@ -47,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         // Opens Dialog Screen to add a playlist
         val addPlaylistDialogBtn = findViewById<FloatingActionButton>(R.id.addPlaylistOrSongButton)
         addPlaylistDialogBtn.setOnClickListener {
-            showAlertDialog(playLists as ArrayList<String>)
+            showAlertDialog(viewModel)
         }
         // Opens the Main or Playlist Library Screen
         libraryButton.setOnClickListener {
@@ -57,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Method to show Dialog Screen for adding a new playlist
-    private fun showAlertDialog(arrayList: ArrayList<String>) {
+    private fun showAlertDialog(viewModel: ApplicationViewModel) {
 
         val addPlaylistDialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
@@ -66,8 +64,8 @@ class MainActivity : AppCompatActivity() {
         val editText  = dialogLayout.findViewById<EditText>(R.id.editText)
         addPlaylistDialogBuilder.setView(dialogLayout)
         addPlaylistDialogBuilder.setPositiveButton("Done") { dialogInterface, i -> Toast.makeText(applicationContext, "You added " + editText.text.toString(), Toast.LENGTH_SHORT).show()
-        val newPlaylist = editText.text
-            arrayList.add(newPlaylist.toString())
+            val newPlaylistName = editText.text
+            viewModel.createPlaylist(newPlaylistName.toString())
         }
         addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, id -> dialog.cancel()}
 
