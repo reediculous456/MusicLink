@@ -5,40 +5,61 @@
     android:id="@+id/mainScreen"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context="edu.uc.reedws.musiclink.MainActivity"
-    android:orientation="vertical">
+    android:background="#0C0B0B"
+    android:backgroundTint="#e00122"
+    android:foregroundTint="#0C0B0B"
+    android:orientation="vertical"
+    tools:context="edu.uc.reedws.musiclink.MainActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/playlistsLabel"
-            android:layout_width="341dp"
+            android:id="@+id/playListsLabel"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:background="#688df4"
+            android:background="@color/black"
             android:gravity="center"
             android:padding="20dp"
             android:text="@string/Playlists"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textStyle="bold" />
+            android:textColor="@color/whiteTextOnBlackBackground"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addPlaylistOrSongButton"
-            android:layout_width="match_parent"
-            android:layout_height="69dp"
-            android:contentDescription="@string/add"
-            android:src="@android:drawable/ic_menu_add" />
-    </LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="65dp"
+            android:layout_gravity="end"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:clickable="true"
+            android:tint="@color/whiteTextOnBlackBackground"
+            app:backgroundTint="@color/black"
+            app:fabSize="auto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/playListsLabel"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ListView
         android:id="@+id/listOfPlayLists"
         android:layout_width="wrap_content"
         android:layout_height="430dp"
         android:dividerHeight="1dp"
-        android:verticalSpacing="4dp" />
+        android:verticalSpacing="4dp" >
+
+    </ListView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/shareButton"
@@ -48,7 +69,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="-32dp"
         android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/black"
         android:src="@android:drawable/ic_menu_share"
+        android:tint="@color/whiteTextOnBlackBackground"
         app:borderWidth="0dp"
         app:elevation="4dp"
         app:fabSize="normal" />
@@ -63,32 +86,44 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight=".25"
+            android:backgroundTint="@color/black"
             android:contentDescription="@string/search"
-            android:src="@android:drawable/ic_menu_search" />
+            android:foregroundTint="@color/black"
+            android:src="@android:drawable/ic_menu_search"
+            android:tint="@color/whiteTextOnBlackBackground" />
 
         <ImageButton
             android:id="@+id/libraryButton"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight=".25"
+            android:backgroundTint="@color/black"
             android:contentDescription="@string/library"
-            android:src="@drawable/ic_library" />
+            android:foregroundTint="@color/black"
+            android:src="@drawable/ic_library"
+            android:tint="@color/whiteTextOnBlackBackground" />
 
         <ImageButton
             android:id="@+id/profileButton"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight=".25"
+            android:backgroundTint="@color/black"
             android:contentDescription="@string/profile"
-            android:src="@drawable/ic_profile" />
+            android:foregroundTint="@color/black"
+            android:src="@drawable/ic_profile"
+            android:tint="@color/whiteTextOnBlackBackground" />
 
         <ImageButton
             android:id="@+id/optionsButton"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight=".25"
+            android:backgroundTint="@color/black"
             android:contentDescription="@string/options"
-            android:src="@drawable/ic_settings" />
+            android:foregroundTint="@color/black"
+            android:src="@drawable/ic_settings"
+            android:tint="@color/whiteTextOnBlackBackground" />
     </LinearLayout>
 
 </LinearLayout>
