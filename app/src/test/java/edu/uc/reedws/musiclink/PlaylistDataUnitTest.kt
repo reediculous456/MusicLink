@@ -19,13 +19,4 @@ class PlaylistDataUnitTest {
         assertEquals(playlist.name, "Rock")
     }
 
-    @Test
-    fun playlist_isCreatedWithSong() {
-        var song: SongDTO = SongDTO("Toxicity", "Toxicity", "SOAD")
-        var songs = ArrayList<SongDTO>()
-        songs.add(song)
-        var playlist: PlaylistDTO = PlaylistDTO("Rock", songs)
-        assertEquals(playlist.Songs.get(0).title, "Toxicity")
-    }
-
 }

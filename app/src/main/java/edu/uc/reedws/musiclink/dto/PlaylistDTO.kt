@@ -5,7 +5,5 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName="playlist")
 data class PlaylistDTO(var name: String = "", var Songs: String = "", var ownerId: String = "", @PrimaryKey(autoGenerate = true) var id: Int = 0) {
-    override fun toString(): String {
-        return "$name"
-    }
+    override fun toString() = name
 }
