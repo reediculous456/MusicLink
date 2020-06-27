@@ -3,7 +3,7 @@ package edu.uc.reedws.musiclink.service
 import android.app.Application
 import android.util.Log
 import androidx.constraintlayout.widget.Constraints.TAG
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.room.Room
 import edu.uc.reedws.musiclink.dao.AppDatabase
 import edu.uc.reedws.musiclink.dao.ILocalPlaylistDAO
@@ -12,28 +12,36 @@ import java.lang.Exception
 
 class PlaylistService(application: Application) {
     private val application = application
+    private lateinit var localPlaylistDAO: ILocalPlaylistDAO
 
-    fun fetchPlaylists(): MutableLiveData<ArrayList<PlaylistDTO>> {
-        return MutableLiveData()
+    init {
+        getLocalPlaylistDAO()
     }
 
-    fun createPlaylist(name: String): PlaylistDTO {
+    fun fetchPlaylists(): LiveData<List<PlaylistDTO>> {
+        return localPlaylistDAO.getPlaylists()
+    }
+
+    suspend fun createPlaylist(name: String): PlaylistDTO {
         var playlist = PlaylistDTO(name)
-        savePlaylist(playlist)
+        try {
+            savePlaylist(playlist)
+        } catch (e: Exception) {
+            Log.e(TAG, e.message)
+        }
         return playlist
     }
 
-    private fun savePlaylist(playlist: PlaylistDTO) {
+    private suspend fun savePlaylist(playlist: PlaylistDTO) {
         try {
-            var localPlaylistDAO = getLocalPlaylistDAO()
             localPlaylistDAO.savePlaylist(playlist!!)
         } catch (e: Exception) {
             Log.e(TAG, e.message)
         }
     }
 
-    internal fun getLocalPlaylistDAO(): ILocalPlaylistDAO {
+    private fun getLocalPlaylistDAO() {
         val db = Room.databaseBuilder(application, AppDatabase::class.java, "db").build()
-        return db.localPlaylistDAO()
+        localPlaylistDAO = db.localPlaylistDAO()
     }
 }
