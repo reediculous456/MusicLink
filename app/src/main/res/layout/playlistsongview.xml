@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/listSongView"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -15,7 +16,7 @@
             android:layout_width="341dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:background="#e00122"
+            android:background="@color/UC_red"
             android:gravity="center"
             android:padding="20dp"
             android:text="@string/Playlist"
@@ -26,14 +27,14 @@
             android:id="@+id/addPlaylistOrSongButton"
             android:layout_width="match_parent"
             android:layout_height="69dp"
-            android:backgroundTint="#e00122"
+            android:backgroundTint="@color/UC_red"
             android:contentDescription="@string/add"
             android:foregroundTint="#e00122"
             android:outlineAmbientShadowColor="#e00122"
             android:outlineSpotShadowColor="#e00122"
             android:scaleType="centerInside"
             android:src="@android:drawable/ic_menu_add"
-            android:tint="#0C0B0B" />
+            android:tint="@color/black" />
     </LinearLayout>
 
     <ListView
@@ -51,7 +52,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="-32dp"
         android:layout_marginEnd="20dp"
-        android:src="@android:drawable/ic_menu_share" />
+        android:src="@android:drawable/ic_menu_share"
+        android:tint="@color/black"
+        app:backgroundTint="@color/UC_red" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,41 +66,41 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight=".25"
-            android:backgroundTint="#e00122"
+            android:backgroundTint="@color/UC_red"
             android:contentDescription="@string/search"
             android:src="@android:drawable/ic_menu_search"
-            android:tint="#0C0B0B" />
+            android:tint="@color/black" />
 
         <ImageButton
             android:id="@+id/libraryButton"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight=".25"
-            android:backgroundTint="#e00122"
+            android:backgroundTint="@color/UC_red"
             android:contentDescription="@string/library"
             android:src="@drawable/ic_library"
-            android:tint="#0C0B0B" />
+            android:tint="@color/black" />
 
         <ImageButton
             android:id="@+id/profileButton"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight=".25"
-            android:backgroundTint="#e00122"
+            android:backgroundTint="@color/UC_red"
             android:contentDescription="@string/profile"
             android:src="@drawable/ic_profile"
-            android:tint="#0C0B0B" />
+            android:tint="@color/black" />
 
         <ImageButton
             android:id="@+id/optionsButton"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight=".25"
-            android:backgroundTint="#e00122"
+            android:backgroundTint="@color/UC_red"
             android:contentDescription="@string/options"
             android:foregroundTint="#e00122"
             android:src="@drawable/ic_settings"
-            android:tint="#0C0B0B" />
+            android:tint="@color/black" />
     </LinearLayout>
 
 </LinearLayout>
