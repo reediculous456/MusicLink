@@ -4,7 +4,9 @@ about: Report a bug
 labels: Bug
 ---
 ### BUG
+
 ---------------------------------------------
+
 #### Detailed Description
 
 
@@ -17,12 +19,12 @@ labels: Bug
 ##### Steps to Reproduce:
 
 
-##### Screenshot (if relevant):
+##### Screenshot (if relevant)
 <!-- Delete this header if not relevant -->
 
 ##### Possible fix
 <!-- Delete this header if not relevant -->
 
-#### References:
+#### References
 <!-- This can be an email or a meeting, please include the date -->
 

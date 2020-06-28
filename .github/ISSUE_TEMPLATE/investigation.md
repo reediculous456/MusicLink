@@ -1,9 +1,9 @@
 ---
-name: Research topic
-about: Add a task to research something
-labels: Research
+name: Investigation
+about: Add a task to investigate something
+labels: Investigation
 ---
-### RESEARCH
+### INVESTIGATION
 
 ---------------------------------------------
 

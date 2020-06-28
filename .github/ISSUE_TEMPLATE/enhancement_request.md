@@ -4,7 +4,9 @@ about: Suggest an idea for this project
 labels: Enhancement
 ---
 ### ENHANCEMENT
+
 ---------------------------------------------
+
 #### Detailed Description
 
 
@@ -15,5 +17,5 @@ labels: Enhancement
 <!-- Explain to QA what to look for so they know to pass/fail the issue -->
 
 
-#### References:
+#### References
 <!-- This can be an email or a meeting, please include the date -->
