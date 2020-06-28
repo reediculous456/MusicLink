@@ -5,9 +5,9 @@
     android:id="@+id/mainScreen"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#0C0B0B"
-    android:backgroundTint="#e00122"
-    android:foregroundTint="#0C0B0B"
+    android:background="@color/black"
+    android:backgroundTint="@color/UC_red"
+    android:foregroundTint="@color/black"
     android:orientation="vertical"
     tools:context="edu.uc.reedws.musiclink.MainActivity">
 
@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="430dp"
         android:dividerHeight="1dp"
-        android:verticalSpacing="4dp" >
+        android:verticalSpacing="4dp">
 
     </ListView>
 
