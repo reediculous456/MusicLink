@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Music Link</string>
+    <string name="Playlists">Playlists</string>
+    <string name="Playlist">Playlist</string>
+    <string name="search">Search</string>
+    <string name="add">add</string>
+    <string name="library">Library</string>
+    <string name="profile">Profile</string>
+    <string name="options">Options</string>
+    <string-array name="navigation">
+        <item>Search</item>
+        <item>Library</item>
+        <item>Profile</item>
+        <item>Settings</item>
+
+    </string-array>
+    <string name="title_activity_search">SearchActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="enter_name_of_playlist_here">Enter name of playlist here...</string>
+    <string name="enter_the_text_here">Enter the text here</string>
 </resources>
