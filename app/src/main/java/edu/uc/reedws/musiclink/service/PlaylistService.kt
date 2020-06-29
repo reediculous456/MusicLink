@@ -23,7 +23,7 @@ class PlaylistService(application: Application) {
     }
 
     suspend fun createPlaylist(name: String): PlaylistDTO {
-        var playlist = PlaylistDTO(name)
+        val playlist = PlaylistDTO(name)
         try {
             savePlaylist(playlist)
         } catch (e: Exception) {
