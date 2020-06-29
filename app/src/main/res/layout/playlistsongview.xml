@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/listSongView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/singlePlayListsLabel"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="@color/UC_red"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="@string/Playlist"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/addPlaylistOrSongButton"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:backgroundTint="@color/UC_red"
+            android:contentDescription="@string/add"
+            android:foregroundTint="#e00122"
+            android:outlineAmbientShadowColor="#e00122"
+            android:outlineSpotShadowColor="#e00122"
+            android:scaleType="centerInside"
+            android:src="@android:drawable/ic_menu_add"
+            android:tint="@color/black" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listOfSongs"
+        android:layout_width="match_parent"
+        android:layout_height="430dp"
+        android:dividerHeight="1dp"
+        android:verticalSpacing="4dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/shareButton"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="-32dp"
+        android:layout_marginEnd="20dp"
+        android:src="@android:drawable/ic_menu_share"
+        android:tint="@color/black"
+        app:backgroundTint="@color/UC_red" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/searchButton"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".25"
+            android:backgroundTint="@color/UC_red"
+            android:contentDescription="@string/search"
+            android:src="@android:drawable/ic_menu_search"
+            android:tint="@color/black" />
+
+        <ImageButton
+            android:id="@+id/libraryButton"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".25"
+            android:backgroundTint="@color/UC_red"
+            android:contentDescription="@string/library"
+            android:src="@drawable/ic_library"
+            android:tint="@color/black" />
+
+        <ImageButton
+            android:id="@+id/profileButton"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".25"
+            android:backgroundTint="@color/UC_red"
+            android:contentDescription="@string/profile"
+            android:src="@drawable/ic_profile"
+            android:tint="@color/black" />
+
+        <ImageButton
+            android:id="@+id/optionsButton"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".25"
+            android:backgroundTint="@color/UC_red"
+            android:contentDescription="@string/options"
+            android:foregroundTint="#e00122"
+            android:src="@drawable/ic_settings"
+            android:tint="@color/black" />
+    </LinearLayout>
+
+</LinearLayout>
