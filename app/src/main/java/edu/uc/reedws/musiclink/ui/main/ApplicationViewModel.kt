@@ -17,7 +17,7 @@ class ApplicationViewModel(application: Application): AndroidViewModel(applicati
         fetchPlaylists()
     }
 
-    fun fetchPlaylists() {
+    private fun fetchPlaylists() {
         viewModelScope.launch {
             playlists = _playlistService.fetchPlaylists()
         }
