@@ -7,7 +7,7 @@ import edu.uc.reedws.musiclink.dto.PlaylistDTO
 @Dao
 interface ILocalPlaylistDAO {
 
-    @Query("SELECT * FROM playlist")
+    @Query("SELECT * FROM playlists")
     fun getPlaylists(): LiveData<List<PlaylistDTO>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

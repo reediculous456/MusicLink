@@ -17,7 +17,6 @@ class PlaylistLocalDatabaseTest {
 
     @Test
     fun createAndSavePlaylist() {
-
-        assertTrue(true)
+        // TODO: Write unit test for AndroidViewModel (ask prof for example)
     }
 }
