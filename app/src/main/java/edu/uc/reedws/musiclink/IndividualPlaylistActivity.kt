@@ -3,7 +3,9 @@ package edu.uc.reedws.musiclink
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.main_activity.*
+import kotlinx.android.synthetic.main.main_activity.libraryButton
+import kotlinx.android.synthetic.main.main_activity.searchButton
+import kotlinx.android.synthetic.main.main_activity.addPlaylistOrSongButton
 
 class IndividualPlaylistActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
