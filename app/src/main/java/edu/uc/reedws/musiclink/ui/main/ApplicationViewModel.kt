@@ -17,16 +17,16 @@ class ApplicationViewModel(application: Application): AndroidViewModel(applicati
         fetchPlaylists()
     }
 
-    private fun fetchPlaylists() {
-        viewModelScope.launch {
-            playlists = _playlistService.fetchPlaylists()
-        }
-    }
-
     fun createPlaylist(name: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _playlistService.createPlaylist(name)
             fetchPlaylists()
+        }
+    }
+
+    private fun fetchPlaylists() {
+        viewModelScope.launch {
+            playlists = _playlistService.fetchPlaylists()
         }
     }
 }
