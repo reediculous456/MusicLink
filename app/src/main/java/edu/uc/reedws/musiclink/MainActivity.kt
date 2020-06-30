@@ -37,16 +37,19 @@ class MainActivity() : AppCompatActivity() {
                     .replace(R.id.mainScreen, MainFragment.newInstance())
                     .commitNow()
         }
+
         // Opens Search Screen
         searchButton.setOnClickListener {
             val intent = Intent(this,SearchActivity::class.java)
             startActivity(intent)
         }
+
         // Opens Dialog Screen to add a playlist
         val addPlaylistDialogBtn = findViewById<FloatingActionButton>(R.id.addPlaylistOrSongButton)
         addPlaylistDialogBtn.setOnClickListener {
             showAlertDialog(viewModel)
         }
+
         // Opens the Main or Playlist Library Screen
         libraryButton.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
@@ -56,15 +59,14 @@ class MainActivity() : AppCompatActivity() {
 
     // Method to show Dialog Screen for adding a new playlist
     private fun showAlertDialog(viewModel: ApplicationViewModel) {
-
         val addPlaylistDialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         addPlaylistDialogBuilder.setTitle("Enter name of playlist to create")
         val dialogLayout = inflater.inflate(R.layout.add_playlist_dialog, null)
-        val editText  = dialogLayout.findViewById<EditText>(R.id.editText)
+        val searchedSong  = dialogLayout.findViewById<EditText>(R.id.searchedSong)
         addPlaylistDialogBuilder.setView(dialogLayout)
-        addPlaylistDialogBuilder.setPositiveButton("Done") { dialogInterface, i -> Toast.makeText(applicationContext, "You added " + editText.text.toString(), Toast.LENGTH_SHORT).show()
-            val newPlaylistName = editText.text
+        addPlaylistDialogBuilder.setPositiveButton("Done") { dialogInterface, i -> Toast.makeText(applicationContext, "You added " + searchedSong.text.toString(), Toast.LENGTH_SHORT).show()
+            val newPlaylistName = searchedSong.text
             viewModel.createPlaylist(newPlaylistName.toString())
         }
         addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, id -> dialog.cancel()}
