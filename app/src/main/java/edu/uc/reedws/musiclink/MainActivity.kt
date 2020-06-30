@@ -13,7 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import edu.uc.reedws.musiclink.ui.main.ApplicationViewModel
 import edu.uc.reedws.musiclink.ui.main.MainFragment
-import kotlinx.android.synthetic.main.main_activity.*
+import kotlinx.android.synthetic.main.main_activity.searchButton
+import kotlinx.android.synthetic.main.main_activity.libraryButton
 
 class MainActivity() : AppCompatActivity() {
     private lateinit var viewModel: ApplicationViewModel
