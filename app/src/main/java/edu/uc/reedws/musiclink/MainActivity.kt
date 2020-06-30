@@ -15,6 +15,7 @@ import edu.uc.reedws.musiclink.ui.main.ApplicationViewModel
 import edu.uc.reedws.musiclink.ui.main.MainFragment
 import kotlinx.android.synthetic.main.main_activity.searchButton
 import kotlinx.android.synthetic.main.main_activity.libraryButton
+import kotlinx.android.synthetic.main.search_screen.*
 
 class MainActivity() : AppCompatActivity() {
     private lateinit var viewModel: ApplicationViewModel
@@ -65,12 +66,26 @@ class MainActivity() : AppCompatActivity() {
         addPlaylistDialogBuilder.setTitle("Enter name of playlist to create")
         val dialogLayout = inflater.inflate(R.layout.add_playlist_dialog, null)
         val searchedSong  = dialogLayout.findViewById<EditText>(R.id.searchedSong)
+
         addPlaylistDialogBuilder.setView(dialogLayout)
-        addPlaylistDialogBuilder.setPositiveButton("Done") { dialogInterface, i -> Toast.makeText(applicationContext, "You added " + searchedSong.text.toString(), Toast.LENGTH_SHORT).show()
+
+        addPlaylistDialogBuilder.setPositiveButton("Done") { dialogInterface, i ->
+            if(searchedSong.length() > 0) {
+            Toast.makeText(
+                applicationContext,
+                "You added " + searchedSong.text.toString(),
+                Toast.LENGTH_SHORT
+            ).show()
+
             val newPlaylistName = searchedSong.text
             viewModel.createPlaylist(newPlaylistName.toString())
+            }
+            else {
+                Toast.makeText(applicationContext, "You have not entered anything", Toast.LENGTH_SHORT).show()
+            }
         }
-        addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, id -> dialog.cancel()}
+        addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, id -> dialog.cancel() }
+
 
         addPlaylistDialogBuilder.show()
     }
