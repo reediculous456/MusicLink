@@ -18,10 +18,18 @@ class PlaylistService(application: Application) {
         getLocalPlaylistDAO()
     }
 
+    /**
+     * Fetch the playlists added by user
+     *
+     */
     fun fetchPlaylists(): LiveData<List<PlaylistDTO>> {
         return localPlaylistDAO.getPlaylists()
     }
 
+    /**
+     * Create the playlist and save the playlist into room database
+     *
+     */
     suspend fun createPlaylist(name: String): PlaylistDTO {
         val playlist = PlaylistDTO(name)
         try {
@@ -32,6 +40,10 @@ class PlaylistService(application: Application) {
         return playlist
     }
 
+    /**
+     * Save or insert the new playlist inside room database
+     *
+     */
     private suspend fun savePlaylist(playlist: PlaylistDTO) {
         try {
             localPlaylistDAO.savePlaylist(playlist!!)
@@ -40,6 +52,10 @@ class PlaylistService(application: Application) {
         }
     }
 
+    /**
+     * Retrieve all the playlists from the database
+     *
+     */
     private fun getLocalPlaylistDAO() {
         val db = Room.databaseBuilder(application, AppDatabase::class.java, "db").build()
         localPlaylistDAO = db.localPlaylistDAO()
