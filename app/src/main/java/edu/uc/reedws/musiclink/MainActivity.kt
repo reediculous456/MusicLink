@@ -13,21 +13,20 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import edu.uc.reedws.musiclink.ui.main.ApplicationViewModel
 import edu.uc.reedws.musiclink.ui.main.MainFragment
-import kotlinx.android.synthetic.main.main_activity.searchButton
-import kotlinx.android.synthetic.main.main_activity.libraryButton
+import kotlinx.android.synthetic.main.main_activity.*
 
-class MainActivity() : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: ApplicationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-        viewModel = ViewModelProvider(this).get(ApplicationViewModel::class.java);
+        viewModel = ViewModelProvider(this).get(ApplicationViewModel::class.java)
 
         val listView = findViewById<ListView>(R.id.listOfPlayLists)
 
-        viewModel.playlists.observe(this, Observer {
-            playLists -> listView.adapter = ArrayAdapter(
+        viewModel.playlists.observe(this, Observer { playLists ->
+            listView.adapter = ArrayAdapter(
                 this,
                 android.R.layout.simple_list_item_1, playLists
             )
@@ -35,13 +34,13 @@ class MainActivity() : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.mainScreen, MainFragment.newInstance())
-                    .commitNow()
+                .replace(R.id.mainScreen, MainFragment.newInstance())
+                .commitNow()
         }
 
         // Opens Search Screen
         searchButton.setOnClickListener {
-            val intent = Intent(this,SearchActivity::class.java)
+            val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
 
@@ -53,7 +52,7 @@ class MainActivity() : AppCompatActivity() {
 
         // Opens the Main or Playlist Library Screen
         libraryButton.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }
@@ -64,23 +63,26 @@ class MainActivity() : AppCompatActivity() {
         val inflater = layoutInflater
         addPlaylistDialogBuilder.setTitle("Enter name of playlist to create")
         val dialogLayout = inflater.inflate(R.layout.add_playlist_dialog, null)
-        val searchedSong  = dialogLayout.findViewById<EditText>(R.id.searchedSong)
+        val searchedSong = dialogLayout.findViewById<EditText>(R.id.searchedSong)
 
         addPlaylistDialogBuilder.setView(dialogLayout)
 
         addPlaylistDialogBuilder.setPositiveButton("Done") { dialogInterface, i ->
-            if(searchedSong.length() > 0) {
-            Toast.makeText(
-                applicationContext,
-                "You added " + searchedSong.text.toString(),
-                Toast.LENGTH_SHORT
-            ).show()
+            if (searchedSong.length() > 0) {
+                Toast.makeText(
+                    applicationContext,
+                    "You added " + searchedSong.text.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
 
-            val newPlaylistName = searchedSong.text
-            viewModel.createPlaylist(newPlaylistName.toString())
-            }
-            else {
-                Toast.makeText(applicationContext, "You have not entered anything", Toast.LENGTH_SHORT).show()
+                val newPlaylistName = searchedSong.text
+                viewModel.createPlaylist(newPlaylistName.toString())
+            } else {
+                Toast.makeText(
+                    applicationContext,
+                    "You have not entered anything",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
         addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, id -> dialog.cancel() }

@@ -3,9 +3,7 @@ package edu.uc.reedws.musiclink
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.main_activity.libraryButton
-import kotlinx.android.synthetic.main.main_activity.searchButton
-import kotlinx.android.synthetic.main.main_activity.addPlaylistOrSongButton
+import kotlinx.android.synthetic.main.main_activity.*
 
 class IndividualPlaylistActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,12 +17,15 @@ class IndividualPlaylistActivity : AppCompatActivity() {
         }
         // Opens Search Screen
         searchButton.setOnClickListener {
-            val intent = Intent(this,SearchActivity::class.java)
+            val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
         // Opens Search Screen and will need to associate with the playlist to avoid having to select a playlist
         addPlaylistOrSongButton.setOnClickListener {
-            val intent = Intent(this,SearchActivity::class.java) // Change this later to include playlist data without making you select a playlist
+            val intent = Intent(
+                this,
+                SearchActivity::class.java
+            ) // Change this later to include playlist data without making you select a playlist
             startActivity(intent)
         }
     }

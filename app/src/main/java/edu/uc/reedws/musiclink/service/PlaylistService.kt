@@ -8,7 +8,6 @@ import androidx.room.Room
 import edu.uc.reedws.musiclink.dao.AppDatabase
 import edu.uc.reedws.musiclink.dao.ILocalPlaylistDAO
 import edu.uc.reedws.musiclink.dto.PlaylistDTO
-import java.lang.Exception
 
 class PlaylistService(application: Application) {
     private val application = application
@@ -46,7 +45,7 @@ class PlaylistService(application: Application) {
      */
     private suspend fun savePlaylist(playlist: PlaylistDTO) {
         try {
-            localPlaylistDAO.savePlaylist(playlist!!)
+            localPlaylistDAO.savePlaylist(playlist)
         } catch (e: Exception) {
             Log.e(TAG, e.message)
         }
