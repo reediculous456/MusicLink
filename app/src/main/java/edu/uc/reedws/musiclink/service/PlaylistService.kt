@@ -52,7 +52,7 @@ class PlaylistService(application: Application) {
     }
 
     /**
-     * Retrieve all the playlists from the database
+     * Builds the database instance and retrieves the DAO instance from it
      *
      */
     private fun getLocalPlaylistDAO() {
