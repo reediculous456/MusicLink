@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             if (newPlaylistName.length() > 0) {
                 Toast.makeText(
                     applicationContext,
-                    "You added " + searchedSong.text.toString(),
+                    "You added " + newPlaylistName.text.toString(),
                     Toast.LENGTH_SHORT
                 ).show()
 
