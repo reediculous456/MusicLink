@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         val inflater = layoutInflater
         addPlaylistDialogBuilder.setTitle("Enter name of playlist to create")
         val dialogLayout = inflater.inflate(R.layout.add_playlist_dialog, null)
-        val searchedSong = dialogLayout.findViewById<EditText>(R.id.searchedSong)
+        val newPlaylistName = dialogLayout.findViewById<EditText>(R.id.newPlaylistName)
 
         addPlaylistDialogBuilder.setView(dialogLayout)
 
