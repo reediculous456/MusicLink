@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         addPlaylistDialogBuilder.setView(dialogLayout)
 
         addPlaylistDialogBuilder.setPositiveButton("Done") { dialogInterface, i ->
-            if (searchedSong.length() > 0) {
+            if (newPlaylistName.length() > 0) {
                 Toast.makeText(
                     applicationContext,
                     "You added " + searchedSong.text.toString(),
