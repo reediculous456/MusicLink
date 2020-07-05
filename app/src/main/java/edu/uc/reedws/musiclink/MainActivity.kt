@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
 
-                val newPlaylistName = searchedSong.text
+                val newPlaylistName = newPlaylistName.text
                 viewModel.createPlaylist(newPlaylistName.toString())
             } else {
                 Toast.makeText(
