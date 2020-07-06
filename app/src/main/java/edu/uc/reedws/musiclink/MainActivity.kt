@@ -15,8 +15,6 @@ import edu.uc.reedws.musiclink.ui.main.ApplicationViewModel
 import edu.uc.reedws.musiclink.ui.main.MainFragment
 import kotlinx.android.synthetic.main.main_activity.*
 
-//Add additional documentation here
-
 class MainActivity() : AppCompatActivity() {
     private lateinit var viewModel: ApplicationViewModel
         //Create the Overlay
