@@ -21,4 +21,6 @@
     -->
     <string name="enter_name_of_playlist_here">Enter name of playlist here...</string>
     <string name="enter_the_text_here">Enter the text here</string>
+    <string name="button_that_allows_for_the_sharing_of_media_with_other_apps">Button that allows for the sharing of media with other apps</string>
+    <string name="song_name">Song Name</string>
 </resources>

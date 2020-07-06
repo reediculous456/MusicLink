@@ -59,6 +59,13 @@
         android:dividerHeight="1dp"
         android:verticalSpacing="4dp">
 
+        <EditText
+            android:id="@+id/UserMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/song_name"
+            android:inputType="textPersonName" />
     </ListView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -70,6 +77,7 @@
         android:layout_marginTop="-32dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/black"
+        android:contentDescription="@string/button_that_allows_for_the_sharing_of_media_with_other_apps"
         android:src="@android:drawable/ic_menu_share"
         android:tint="@color/whiteTextOnBlackBackground"
         app:borderWidth="0dp"
@@ -90,7 +98,17 @@
             android:contentDescription="@string/search"
             android:foregroundTint="@color/black"
             android:src="@android:drawable/ic_menu_search"
-            android:tint="@color/whiteTextOnBlackBackground" />
+            android:tint="@color/whiteTextOnBlackBackground"
+            android:visibility="visible"
+
+            android:paddingLeft="4dp"
+            android:minWidth="40dp"
+            android:paddingRight="4dp"
+
+            android:paddingTop="8dp"
+            android:minHeight="32dp"
+            android:paddingBottom="8dp"
+            />
 
         <ImageButton
             android:id="@+id/libraryButton"
@@ -101,7 +119,16 @@
             android:contentDescription="@string/library"
             android:foregroundTint="@color/black"
             android:src="@drawable/ic_library"
-            android:tint="@color/whiteTextOnBlackBackground" />
+            android:tint="@color/whiteTextOnBlackBackground"
+
+            android:paddingLeft="4dp"
+            android:minWidth="40dp"
+            android:paddingRight="4dp"
+
+            android:paddingTop="8dp"
+            android:minHeight="32dp"
+            android:paddingBottom="8dp"
+            />
 
         <ImageButton
             android:id="@+id/profileButton"
@@ -112,7 +139,16 @@
             android:contentDescription="@string/profile"
             android:foregroundTint="@color/black"
             android:src="@drawable/ic_profile"
-            android:tint="@color/whiteTextOnBlackBackground" />
+            android:tint="@color/whiteTextOnBlackBackground"
+
+            android:paddingLeft="4dp"
+            android:minWidth="40dp"
+            android:paddingRight="4dp"
+
+            android:paddingTop="8dp"
+            android:minHeight="32dp"
+            android:paddingBottom="8dp"
+            />
 
         <ImageButton
             android:id="@+id/optionsButton"
@@ -123,7 +159,16 @@
             android:contentDescription="@string/options"
             android:foregroundTint="@color/black"
             android:src="@drawable/ic_settings"
-            android:tint="@color/whiteTextOnBlackBackground" />
+            android:tint="@color/whiteTextOnBlackBackground"
+
+            android:paddingLeft="4dp"
+            android:minWidth="40dp"
+            android:paddingRight="4dp"
+
+            android:paddingTop="8dp"
+            android:minHeight="32dp"
+            android:paddingBottom="8dp"
+            />
     </LinearLayout>
 
 </LinearLayout>

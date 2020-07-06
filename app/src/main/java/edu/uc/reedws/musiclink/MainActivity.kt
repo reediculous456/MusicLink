@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity() : AppCompatActivity() {
     private lateinit var viewModel: ApplicationViewModel
-
+        //Create the Overlay
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
@@ -73,4 +73,20 @@ class MainActivity() : AppCompatActivity() {
 
         addPlaylistDialogBuilder.show()
     }
+
+    //This function was intended to be an example of how you could implement the Share Button to share data to other apps but I can't get it running myself, guess I'm too out of my element on this one.
+    //If it could recognise the Share Button or look for the playlist as an array it could be useful.
+    /*
+    private fun shareButton.setOnClickListener(){
+
+        val message: String = UserMessage.text.toString()
+
+        val intent = Intent()
+        intent.action = Intent.ACTION_SEND
+        intent.putExtra(Intent.EXTRA_TEXT, message)
+        intent.type = "text/plain"
+
+        startActivity(Intent.createChooser(intent, "Share to : "))
+    }
+     */
 }
