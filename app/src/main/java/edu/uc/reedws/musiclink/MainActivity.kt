@@ -15,7 +15,7 @@ import edu.uc.reedws.musiclink.ui.main.ApplicationViewModel
 import edu.uc.reedws.musiclink.ui.main.MainFragment
 import kotlinx.android.synthetic.main.main_activity.*
 
-class MainActivity() : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: ApplicationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,24 +37,24 @@ class MainActivity() : AppCompatActivity() {
                     .replace(R.id.mainScreen, MainFragment.newInstance())
                     .commitNow()
         }
-        // Opens Search Screen
+        /** Opens Search Screen */
         searchButton.setOnClickListener {
             val intent = Intent(this,SearchActivity::class.java)
             startActivity(intent)
         }
-        // Opens Dialog Screen to add a playlist
+        /** Opens Dialog Screen to add a playlist */
         val addPlaylistDialogBtn = findViewById<FloatingActionButton>(R.id.addPlaylistOrSongButton)
         addPlaylistDialogBtn.setOnClickListener {
             showAlertDialog(viewModel)
         }
-        // Opens the Main or Playlist Library Screen
+        /** Opens the Main or Playlist Library Screen */
         libraryButton.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
     }
 
-    // Method to show Dialog Screen for adding a new playlist
+    /** Show Dialog Screen for adding a new playlist */
     private fun showAlertDialog(viewModel: ApplicationViewModel) {
 
         val addPlaylistDialogBuilder = AlertDialog.Builder(this)
