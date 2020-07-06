@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import edu.uc.reedws.musiclink.R
 
 class MainFragment : Fragment() {
-
     private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -26,5 +25,4 @@ class MainFragment : Fragment() {
     companion object {
         fun newInstance() = MainFragment()
     }
-
 }
