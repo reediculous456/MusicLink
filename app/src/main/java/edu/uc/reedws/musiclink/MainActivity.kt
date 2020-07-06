@@ -2,10 +2,7 @@ package edu.uc.reedws.musiclink
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.ListView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -36,6 +33,14 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                     .replace(R.id.mainScreen, MainFragment.newInstance())
                     .commitNow()
+        }
+        /** Share functionality */
+        shareButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "type/plain"
+            intent.putExtra(Intent.EXTRA_TEXT, "This is example text.")
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Example Subject")
+            startActivity(Intent.createChooser(intent, "Share playlist"))
         }
         /** Opens Search Screen */
         searchButton.setOnClickListener {

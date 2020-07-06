@@ -10,6 +10,14 @@ class IndividualPlaylistActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.playlist_song_view)
 
+        /** Share functionality */
+        shareButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "type/plain"
+            intent.putExtra(Intent.EXTRA_TEXT, "This is example text.")
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Example Subject")
+            startActivity(Intent.createChooser(intent, "Share playlist"))
+        }
         /** Opens the Main or Playlist Library Screen */
         libraryButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
