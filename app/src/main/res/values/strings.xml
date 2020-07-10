@@ -6,7 +6,6 @@
     <string name="add">add</string>
     <string name="library">Library</string>
     <string name="profile">Profile</string>
-    <string name="options">Options</string>
     <string-array name="navigation">
         <item>Search</item>
         <item>Library</item>
@@ -21,4 +20,5 @@
     -->
     <string name="enter_name_of_playlist_here">Enter name of playlist here...</string>
     <string name="enter_the_text_here">Enter the text here</string>
+    <string name="settings">Settings</string>
 </resources>

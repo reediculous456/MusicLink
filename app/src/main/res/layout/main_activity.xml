@@ -52,14 +52,21 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ListView
-        android:id="@+id/listOfPlayLists"
-        android:layout_width="wrap_content"
-        android:layout_height="430dp"
-        android:dividerHeight="1dp"
-        android:verticalSpacing="4dp">
 
-    </ListView>
+<!--    <ListView-->
+<!--        android:id="@+id/listOfPlayLists"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="430dp"-->
+<!--        android:dividerHeight="1dp"-->
+<!--        android:verticalSpacing="4dp">-->
+<!--    </ListView-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcycListOfPlayLists"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="430dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/shareButton"
@@ -76,54 +83,67 @@
         app:elevation="4dp"
         app:fabSize="normal" />
 
-    <LinearLayout
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:id="@+id/bottomNav"
+        app:itemBackground="@color/black"
+        app:itemIconTint="@color/whiteTextOnBlackBackground"
+        app:itemTextColor="@color/whiteTextOnBlackBackground"
+        app:itemIconSize="24dp"
+        android:elevation="2dp"
+        app:menu="@menu/menu_bottom_navigation"
+        app:labelVisibilityMode="labeled"
+        />
 
-        <ImageButton
-            android:id="@+id/searchButton"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".25"
-            android:backgroundTint="@color/black"
-            android:contentDescription="@string/search"
-            android:foregroundTint="@color/black"
-            android:src="@android:drawable/ic_menu_search"
-            android:tint="@color/whiteTextOnBlackBackground" />
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="horizontal">-->
 
-        <ImageButton
-            android:id="@+id/libraryButton"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".25"
-            android:backgroundTint="@color/black"
-            android:contentDescription="@string/library"
-            android:foregroundTint="@color/black"
-            android:src="@drawable/ic_library"
-            android:tint="@color/whiteTextOnBlackBackground" />
+<!--        <ImageButton-->
+<!--            android:id="@+id/searchButton"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight=".25"-->
+<!--            android:backgroundTint="@color/black"-->
+<!--            android:contentDescription="@string/search"-->
+<!--            android:foregroundTint="@color/black"-->
+<!--            android:src="@android:drawable/ic_menu_search"-->
+<!--            android:tint="@color/whiteTextOnBlackBackground" />-->
 
-        <ImageButton
-            android:id="@+id/profileButton"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".25"
-            android:backgroundTint="@color/black"
-            android:contentDescription="@string/profile"
-            android:foregroundTint="@color/black"
-            android:src="@drawable/ic_profile"
-            android:tint="@color/whiteTextOnBlackBackground" />
+<!--        <ImageButton-->
+<!--            android:id="@+id/libraryButton"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight=".25"-->
+<!--            android:backgroundTint="@color/black"-->
+<!--            android:contentDescription="@string/library"-->
+<!--            android:foregroundTint="@color/black"-->
+<!--            android:src="@drawable/ic_library"-->
+<!--            android:tint="@color/whiteTextOnBlackBackground" />-->
 
-        <ImageButton
-            android:id="@+id/optionsButton"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".25"
-            android:backgroundTint="@color/black"
-            android:contentDescription="@string/options"
-            android:foregroundTint="@color/black"
-            android:src="@drawable/ic_settings"
-            android:tint="@color/whiteTextOnBlackBackground" />
-    </LinearLayout>
+<!--        <ImageButton-->
+<!--            android:id="@+id/profileButton"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight=".25"-->
+<!--            android:backgroundTint="@color/black"-->
+<!--            android:contentDescription="@string/profile"-->
+<!--            android:foregroundTint="@color/black"-->
+<!--            android:src="@drawable/ic_profile"-->
+<!--            android:tint="@color/whiteTextOnBlackBackground" />-->
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/optionsButton"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight=".25"-->
+<!--            android:backgroundTint="@color/black"-->
+<!--            android:contentDescription="@string/settings"-->
+<!--            android:foregroundTint="@color/black"-->
+<!--            android:src="@drawable/ic_settings"-->
+<!--            android:tint="@color/whiteTextOnBlackBackground" />-->
+<!--    </LinearLayout>-->
 
 </LinearLayout>
