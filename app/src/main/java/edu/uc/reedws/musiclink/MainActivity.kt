@@ -5,52 +5,39 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-//import androidx.lifecycle.Observer
-//import androidx.lifecycle.ViewModelProvider
-//import androidx.recyclerview.widget.LinearLayoutManager
-//import androidx.recyclerview.widget.RecyclerView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import edu.uc.reedws.musiclink.ui.main.ApplicationViewModel
-//import edu.uc.reedws.musiclink.ui.main.MainFragment
+import edu.uc.reedws.musiclink.ui.main.MainFragment
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: ApplicationViewModel
 
-//    private lateinit var recyclerView: RecyclerView
-//    private lateinit var viewAdapter: RecyclerView.Adapter<*>
-//    private lateinit var viewManager: RecyclerView.LayoutManager
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-//        viewManager = LinearLayoutManager(this)
-//        //viewAdapter = MyAdapter(DataSet)
-//
-//        recyclerView = findViewById<RecyclerView>(R.id.rcycListOfPlayLists).apply {
-//            setHasFixedSize(true)
-//            layoutManager = viewManager
-//            //adapter = viewAdapter
-//        }
+        viewModel = ViewModelProvider(this).get(ApplicationViewModel::class.java);
 
-//        viewModel = ViewModelProvider(this).get(ApplicationViewModel::class.java);
-//
-//        val listView = findViewById<ListView>(R.id.listOfPlayLists)
-//
-//        viewModel.playlists.observe(this, Observer {
-//            playLists -> listView.adapter = ArrayAdapter(
-//                this,
-//                android.R.layout.simple_list_item_1, playLists
-//            )
-//        })
-//
-//        if (savedInstanceState == null) {
-//            supportFragmentManager.beginTransaction()
-//                    .replace(R.id.mainScreen, MainFragment.newInstance())
-//                    .commitNow()
-//        }
+        val listView = findViewById<ListView>(R.id.listOfPlayLists)
+
+        viewModel.playlists.observe(this, Observer {
+            playLists -> listView.adapter = ArrayAdapter(
+                this,
+                android.R.layout.simple_list_item_1, playLists
+            )
+        })
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.mainScreen, MainFragment.newInstance())
+                    .commitNow()
+        }
+
+
+
 
         bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -82,25 +69,15 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra(Intent.EXTRA_SUBJECT, "Example Subject")
             startActivity(Intent.createChooser(intent, "Share playlist"))
         }
-        /** Opens Search Screen */
-//        searchButton.setOnClickListener {
-//            val intent = Intent(this,SearchActivity::class.java)
-//            startActivity(intent)
-//        }
         /** Opens Dialog Screen to add a playlist */
         val addPlaylistDialogBtn = findViewById<FloatingActionButton>(R.id.addPlaylistOrSongButton)
         addPlaylistDialogBtn.setOnClickListener {
-            showAlertDialog(viewModel)
+            showAddPlaylistDialog(viewModel)
         }
-        /** Opens the Main or Playlist Library Screen */
-//        libraryButton.setOnClickListener {
-//            val intent = Intent(this,MainActivity::class.java)
-//            startActivity(intent)
-//        }
     }
 
     /** Show Dialog Screen for adding a new playlist */
-    private fun showAlertDialog(viewModel: ApplicationViewModel) {
+    private fun showAddPlaylistDialog(viewModel: ApplicationViewModel) {
 
         val addPlaylistDialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
