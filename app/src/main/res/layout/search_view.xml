@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/UC_red"
+    android:orientation="vertical">
+
+    <SearchView
+        android:id="@+id/search"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:padding="10dp">
+
+        <requestFocus />
+    </SearchView>
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="476dp" />
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:orientation="horizontal">-->
+
+    <!--        <ImageButton-->
+    <!--            android:id="@+id/searchButton"-->
+    <!--            android:layout_width="fill_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_weight=".25"-->
+    <!--            android:contentDescription="@string/search"-->
+    <!--            android:src="@android:drawable/ic_menu_search"-->
+    <!--            android:tint="#0C0B0B" />-->
+
+    <!--        <ImageButton-->
+    <!--            android:id="@+id/libraryButton"-->
+    <!--            android:layout_width="fill_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_weight=".25"-->
+    <!--            android:contentDescription="@string/library"-->
+    <!--            android:src="@drawable/ic_library"-->
+    <!--            android:tint="#0C0B0B" />-->
+
+    <!--        <ImageButton-->
+    <!--            android:id="@+id/profileButton"-->
+    <!--            android:layout_width="fill_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_weight=".25"-->
+    <!--            android:contentDescription="@string/profile"-->
+    <!--            android:src="@drawable/ic_profile"-->
+    <!--            android:tint="#0C0B0B" />-->
+
+    <!--        <ImageButton-->
+    <!--            android:id="@+id/optionsButton"-->
+    <!--            android:layout_width="fill_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_weight=".25"-->
+    <!--            android:contentDescription="@string/options"-->
+    <!--            android:src="@drawable/ic_settings"-->
+    <!--            android:tint="#0C0B0B" />-->
+    <!--    </LinearLayout>-->
+
+</LinearLayout>
