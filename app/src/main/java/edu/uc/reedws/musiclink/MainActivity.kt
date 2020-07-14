@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 this,
                 android.R.layout.simple_list_item_1, playLists
             )
-            listView.setOnItemClickListener { adapterView: AdapterView<*>, view1: View, i: Int, l: Long ->
+            listView.setOnItemClickListener { _: AdapterView<*>, _: View, i: Int, _: Long ->
                 val intent = Intent(this,IndividualPlaylistActivity::class.java)
                 intent.putExtra("playlist", listView.adapter.getItem(i).toString())
                 startActivity(intent)
