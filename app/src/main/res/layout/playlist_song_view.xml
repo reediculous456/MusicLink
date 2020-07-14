@@ -55,13 +55,6 @@
         android:dividerHeight="1dp"
         android:verticalSpacing="4dp">
     </ListView>
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/rcycListOfSongs"-->
-<!--        android:scrollbars="vertical"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="430dp">-->
-
-<!--    </androidx.recyclerview.widget.RecyclerView>-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/shareButton"

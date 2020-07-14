@@ -36,9 +36,6 @@ class MainActivity : AppCompatActivity() {
                     .commitNow()
         }
 
-
-
-
         bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.search_menu -> {
