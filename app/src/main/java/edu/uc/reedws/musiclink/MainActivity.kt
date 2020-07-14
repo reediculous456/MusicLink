@@ -2,6 +2,7 @@ package edu.uc.reedws.musiclink
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,11 @@ class MainActivity : AppCompatActivity() {
                 this,
                 android.R.layout.simple_list_item_1, playLists
             )
+            listView.setOnItemClickListener { adapterView: AdapterView<*>, view1: View, i: Int, l: Long ->
+                val intent = Intent(this,IndividualPlaylistActivity::class.java)
+                intent.putExtra("playlist", listView.adapter.getItem(i).toString())
+                startActivity(intent)
+            }
         })
 
         if (savedInstanceState == null) {
@@ -44,8 +50,6 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.library_menu -> {
-//                    val intent = Intent(this,MainActivity::class.java)
-//                    startActivity(intent)
                     true
                 }
                 R.id.profile_menu -> {
