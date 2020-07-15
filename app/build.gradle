@@ -46,4 +46,5 @@ dependencies {
     testImplementation 'androidx.arch.core:core-testing:2.0.0'
     androidTestImplementation 'androidx.arch.core:core-testing:2.0.0'
     testImplementation 'io.mockk:mockk:1.10.0'
+    compile 'com.github.kaaes:spotify-web-api-android:0.4.1'
 }
