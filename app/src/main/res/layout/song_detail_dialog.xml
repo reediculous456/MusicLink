@@ -20,7 +20,7 @@
         android:background="@color/UC_red">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/txtViewSongDetails"
             android:layout_width="351dp"
             android:layout_height="100dp"
             android:text="@string/song_name" />
