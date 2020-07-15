@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        viewModel = ViewModelProvider(this).get(ApplicationViewModel::class.java);
+        viewModel = ViewModelProvider(this).get(ApplicationViewModel::class.java)
 
         val listView = findViewById<ListView>(R.id.listOfPlayLists)
 
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
             val newPlaylistName = editText.text
             viewModel.createPlaylist(newPlaylistName.toString())
         }
-        addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, id -> dialog.cancel()}
+        addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, _ -> dialog.cancel()}
         addPlaylistDialogBuilder.show()
     }
 }
