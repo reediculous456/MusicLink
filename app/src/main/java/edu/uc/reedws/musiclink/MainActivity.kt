@@ -87,8 +87,8 @@ class MainActivity : AppCompatActivity() {
         val newPlaylistName = dialogLayout.findViewById<EditText>(R.id.newPlaylistName)
 
         addPlaylistDialogBuilder.setView(dialogLayout)
-        addPlaylistDialogBuilder.setPositiveButton("Done") { _, _ -> Toast.makeText(applicationContext, "You added " + editText.text.toString(), Toast.LENGTH_SHORT).show()
-            val newPlaylistName = editText.text
+        addPlaylistDialogBuilder.setPositiveButton("Done") { _, _ -> Toast.makeText(applicationContext, "You added " + newPlaylistName.text.toString(), Toast.LENGTH_SHORT).show()
+            val newPlaylistName = newPlaylistName.text
             viewModel.createPlaylist(newPlaylistName.toString())
         }
         addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, _ -> dialog.cancel()}
