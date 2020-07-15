@@ -17,12 +17,15 @@ class IndividualPlaylistActivity : AppCompatActivity() {
         }
         // Opens Search Screen
         searchButton.setOnClickListener {
-            val intent = Intent(this,SearchActivity::class.java)
+            val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
         // Opens Search Screen and will need to associate with the playlist to avoid having to select a playlist
         addPlaylistOrSongButton.setOnClickListener {
-            val intent = Intent(this,SearchActivity::class.java) // Change this later to include playlist data without making you select a playlist
+            val intent = Intent(
+                this,
+                SearchActivity::class.java
+            ) // Change this later to include playlist data without making you select a playlist
             startActivity(intent)
         }
     }

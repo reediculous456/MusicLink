@@ -5,6 +5,6 @@ import androidx.room.RoomDatabase
 import edu.uc.reedws.musiclink.dto.PlaylistDTO
 
 @Database(entities = [PlaylistDTO::class], version = 1)
-abstract class AppDatabase: RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
     abstract fun localPlaylistDAO(): ILocalPlaylistDAO
 }

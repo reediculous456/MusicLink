@@ -15,18 +15,18 @@ import edu.uc.reedws.musiclink.ui.main.ApplicationViewModel
 import edu.uc.reedws.musiclink.ui.main.MainFragment
 import kotlinx.android.synthetic.main.main_activity.*
 
-class MainActivity() : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: ApplicationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-        viewModel = ViewModelProvider(this).get(ApplicationViewModel::class.java);
+        viewModel = ViewModelProvider(this).get(ApplicationViewModel::class.java)
 
         val listView = findViewById<ListView>(R.id.listOfPlayLists)
 
-        viewModel.playlists.observe(this, Observer {
-            playLists -> listView.adapter = ArrayAdapter(
+        viewModel.playlists.observe(this, Observer { playLists ->
+            listView.adapter = ArrayAdapter(
                 this,
                 android.R.layout.simple_list_item_1, playLists
             )
@@ -34,40 +34,59 @@ class MainActivity() : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.mainScreen, MainFragment.newInstance())
-                    .commitNow()
+                .replace(R.id.mainScreen, MainFragment.newInstance())
+                .commitNow()
         }
+
         // Opens Search Screen
         searchButton.setOnClickListener {
-            val intent = Intent(this,SearchActivity::class.java)
+            val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
+
         // Opens Dialog Screen to add a playlist
         val addPlaylistDialogBtn = findViewById<FloatingActionButton>(R.id.addPlaylistOrSongButton)
         addPlaylistDialogBtn.setOnClickListener {
             showAlertDialog(viewModel)
         }
+
         // Opens the Main or Playlist Library Screen
         libraryButton.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }
 
     // Method to show Dialog Screen for adding a new playlist
     private fun showAlertDialog(viewModel: ApplicationViewModel) {
-
         val addPlaylistDialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         addPlaylistDialogBuilder.setTitle("Enter name of playlist to create")
         val dialogLayout = inflater.inflate(R.layout.add_playlist_dialog, null)
-        val editText  = dialogLayout.findViewById<EditText>(R.id.editText)
+        val newPlaylistName = dialogLayout.findViewById<EditText>(R.id.newPlaylistName)
+
         addPlaylistDialogBuilder.setView(dialogLayout)
-        addPlaylistDialogBuilder.setPositiveButton("Done") { dialogInterface, i -> Toast.makeText(applicationContext, "You added " + editText.text.toString(), Toast.LENGTH_SHORT).show()
-            val newPlaylistName = editText.text
-            viewModel.createPlaylist(newPlaylistName.toString())
+
+        addPlaylistDialogBuilder.setPositiveButton("Done") { dialogInterface, i ->
+            if (newPlaylistName.length() > 0) {
+                Toast.makeText(
+                    applicationContext,
+                    "You added " + newPlaylistName.text.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                val newPlaylistName = newPlaylistName.text
+                viewModel.createPlaylist(newPlaylistName.toString())
+            } else {
+                Toast.makeText(
+                    applicationContext,
+                    "You have not entered anything",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
-        addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, id -> dialog.cancel()}
+        addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, id -> dialog.cancel() }
+
 
         addPlaylistDialogBuilder.show()
     }
