@@ -23,6 +23,8 @@ class IndividualPlaylistActivity : AppCompatActivity() {
             intent.putExtra(Intent.EXTRA_SUBJECT, "Example Subject")
             startActivity(Intent.createChooser(intent, "Share playlist"))
         }
+
+        /** Navigation Bar for bottom of screen*/
         bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.search_menu -> {

@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
                     .commitNow()
         }
 
+        /** Navigation Bar for bottom of screen*/
         bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.search_menu -> {
