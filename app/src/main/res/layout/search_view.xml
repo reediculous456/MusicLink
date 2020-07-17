@@ -5,18 +5,15 @@
     android:background="@color/UC_red"
     android:orientation="vertical">
 
-    <SearchView
-        android:id="@+id/search"
+    <AutoCompleteTextView
+        android:id="@+id/searchTextView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:iconifiedByDefault="false"
+        android:inputType="text"
+        android:hint="@string/search_for_a_song_here"
+        android:iconifiedByDefault="true"
         android:padding="10dp">
-<<<<<<< HEAD
-=======
-
->>>>>>> 89a3fd5b19973b0e75058571ed0304dd8e9de98f
-        <requestFocus />
-    </SearchView>
+    </AutoCompleteTextView>
 
     <ListView
         android:id="@+id/listview"

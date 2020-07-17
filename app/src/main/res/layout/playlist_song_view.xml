@@ -53,12 +53,8 @@
         android:layout_width="wrap_content"
         android:layout_height="430dp"
         android:dividerHeight="1dp"
-<<<<<<< HEAD
         android:verticalSpacing="4dp">
     </ListView>
-=======
-        android:verticalSpacing="4dp"></ListView>
->>>>>>> 89a3fd5b19973b0e75058571ed0304dd8e9de98f
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/shareButton"
