@@ -9,7 +9,7 @@ import edu.uc.reedws.musiclink.service.PlaylistService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ApplicationViewModel(application: Application): AndroidViewModel(application) {
+class ApplicationViewModel(application: Application) : AndroidViewModel(application) {
     private var _playlistService: PlaylistService = PlaylistService(application)
     lateinit var playlists: LiveData<List<PlaylistDTO>>
 

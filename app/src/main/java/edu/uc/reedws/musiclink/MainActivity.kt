@@ -22,15 +22,15 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(ApplicationViewModel::class.java)
 
-        val listView = findViewById<ListView>(R.id.listOfPlayLists)
+        val listView = findViewById<ListView>(R.id.listOfPlaylists)
 
-        viewModel.playlists.observe(this, Observer {
-            playLists -> listView.adapter = ArrayAdapter(
+        viewModel.playlists.observe(this, Observer {playlists ->
+            listView.adapter = ArrayAdapter(
                 this,
-                android.R.layout.simple_list_item_1, playLists
+                android.R.layout.simple_list_item_1, playlists
             )
             listView.setOnItemClickListener { _: AdapterView<*>, _: View, i: Int, _: Long ->
-                val intent = Intent(this,IndividualPlaylistActivity::class.java)
+                val intent = Intent(this, IndividualPlaylistActivity::class.java)
                 intent.putExtra("playlist", listView.adapter.getItem(i).toString())
                 startActivity(intent)
             }
@@ -38,15 +38,15 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.mainScreen, MainFragment.newInstance())
-                    .commitNow()
+                .replace(R.id.mainScreen, MainFragment.newInstance())
+                .commitNow()
         }
 
         /** Navigation Bar for bottom of screen*/
         bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.search_menu -> {
-                    val intent = Intent(this,SearchActivity::class.java)
+                    val intent = Intent(this, SearchActivity::class.java)
                     startActivity(intent)
                     true
                 }
@@ -88,11 +88,16 @@ class MainActivity : AppCompatActivity() {
         val newPlaylistName = dialogLayout.findViewById<EditText>(R.id.newPlaylistName)
 
         addPlaylistDialogBuilder.setView(dialogLayout)
-        addPlaylistDialogBuilder.setPositiveButton("Done") { _, _ -> Toast.makeText(applicationContext, "You added " + newPlaylistName.text.toString(), Toast.LENGTH_SHORT).show()
+        addPlaylistDialogBuilder.setPositiveButton("Done") { _, _ ->
+            Toast.makeText(
+                applicationContext,
+                "You added " + newPlaylistName.text.toString(),
+                Toast.LENGTH_SHORT
+            ).show()
             val newPlaylistName = newPlaylistName.text
             viewModel.createPlaylist(newPlaylistName.toString())
         }
-        addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, _ -> dialog.cancel()}
+        addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, _ -> dialog.cancel() }
         addPlaylistDialogBuilder.show()
     }
 }

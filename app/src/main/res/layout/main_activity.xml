@@ -53,11 +53,11 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ListView
-        android:id="@+id/listOfPlayLists"
+        android:id="@+id/listOfPlaylists"
         android:layout_width="wrap_content"
         android:layout_height="430dp"
         android:dividerHeight="1dp"
-        android:verticalSpacing="4dp"/>
+        android:verticalSpacing="4dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/shareButton"
@@ -75,16 +75,15 @@
         app:fabSize="normal" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/bottomNav"
+        android:elevation="2dp"
         app:itemBackground="@color/black"
+        app:itemIconSize="24dp"
         app:itemIconTint="@color/whiteTextOnBlackBackground"
         app:itemTextColor="@color/whiteTextOnBlackBackground"
-        app:itemIconSize="24dp"
-        android:elevation="2dp"
-        app:menu="@menu/menu_bottom_navigation"
         app:labelVisibilityMode="labeled"
-        />
+        app:menu="@menu/menu_bottom_navigation" />
 
 </LinearLayout>
