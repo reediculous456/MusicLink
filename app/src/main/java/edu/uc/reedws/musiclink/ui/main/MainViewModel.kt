@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModel
 import edu.uc.reedws.musiclink.dto.PlaylistDTO
 
 class MainViewModel : ViewModel() {
-    var playlists: MutableLiveData<ArrayList<PlaylistDTO>> = MutableLiveData()
+    var playlists: MutableLiveData<ArrayList<PlaylistDTO>> =
+        MutableLiveData<ArrayList<PlaylistDTO>>()
 
     // TODO: Implement the ViewModel
 }

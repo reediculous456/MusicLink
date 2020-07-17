@@ -6,6 +6,7 @@
         android:icon="@android:drawable/ic_menu_search"
         android:title="@string/search" />
 
+<<<<<<< HEAD
     <item android:id="@+id/library_menu"
         android:title="@string/library"
         android:icon="@drawable/ic_library"/>
@@ -17,5 +18,21 @@
     <item android:id="@+id/settings_menu"
         android:title="@string/settings"
         android:icon="@drawable/ic_settings"/>
+=======
+    <item
+        android:id="@+id/library_menu"
+        android:icon="@drawable/ic_library"
+        android:title="@string/library" />
+
+    <item
+        android:id="@+id/profile_menu"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/profile" />
+
+    <item
+        android:id="@+id/settings_menu"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/settings" />
+>>>>>>> 89a3fd5b19973b0e75058571ed0304dd8e9de98f
 
 </menu>

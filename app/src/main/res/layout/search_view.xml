@@ -11,6 +11,10 @@
         android:layout_height="wrap_content"
         android:iconifiedByDefault="false"
         android:padding="10dp">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 89a3fd5b19973b0e75058571ed0304dd8e9de98f
         <requestFocus />
     </SearchView>
 

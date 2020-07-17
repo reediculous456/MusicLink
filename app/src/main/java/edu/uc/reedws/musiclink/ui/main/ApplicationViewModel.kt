@@ -9,7 +9,7 @@ import edu.uc.reedws.musiclink.service.PlaylistService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ApplicationViewModel(application: Application): AndroidViewModel(application) {
+class ApplicationViewModel(application: Application) : AndroidViewModel(application) {
     private var _playlistService: PlaylistService = PlaylistService(application)
     lateinit var playlists: LiveData<List<PlaylistDTO>>
 
@@ -17,16 +17,16 @@ class ApplicationViewModel(application: Application): AndroidViewModel(applicati
         fetchPlaylists()
     }
 
-    fun fetchPlaylists() {
-        viewModelScope.launch {
-            playlists = _playlistService.fetchPlaylists()
-        }
-    }
-
     fun createPlaylist(name: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _playlistService.createPlaylist(name)
             fetchPlaylists()
+        }
+    }
+
+    private fun fetchPlaylists() {
+        viewModelScope.launch {
+            playlists = _playlistService.fetchPlaylists()
         }
     }
 }

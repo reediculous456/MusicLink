@@ -26,12 +26,12 @@ class IndividualPlaylistActivity : AppCompatActivity() {
         bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.search_menu -> {
-                    val intent = Intent(this,SearchActivity::class.java)
+                    val intent = Intent(this, SearchActivity::class.java)
                     startActivity(intent)
                     true
                 }
                 R.id.library_menu -> {
-                    val intent = Intent(this,MainActivity::class.java)
+                    val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     true
                 }
@@ -46,7 +46,7 @@ class IndividualPlaylistActivity : AppCompatActivity() {
         }
         /** Opens Search Screen and will need to associate with the playlist to avoid having to select a playlist */
         addPlaylistOrSongButton.setOnClickListener {
-            val intent = Intent(this,SearchActivity::class.java)
+            val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
     }
