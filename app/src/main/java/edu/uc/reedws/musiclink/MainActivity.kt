@@ -10,6 +10,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import edu.uc.reedws.musiclink.ui.main.ApplicationViewModel
 import edu.uc.reedws.musiclink.ui.main.MainFragment
@@ -17,6 +20,7 @@ import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: ApplicationViewModel
+    private lateinit var mAdView : AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +35,11 @@ class MainActivity : AppCompatActivity() {
                 android.R.layout.simple_list_item_1, playLists
             )
         })
+
+        MobileAds.initialize(this) {}
+        mAdView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
