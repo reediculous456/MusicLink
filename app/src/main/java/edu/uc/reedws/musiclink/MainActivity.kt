@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: ApplicationViewModel
-    private lateinit var mAdView : AdView
+    private lateinit var mAdView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         val listView = findViewById<ListView>(R.id.listOfPlaylists)
 
-        viewModel.playlists.observe(this, Observer {playlists ->
+        viewModel.playlists.observe(this, Observer { playlists ->
             listView.adapter = ArrayAdapter(
                 this,
                 android.R.layout.simple_list_item_1, playlists

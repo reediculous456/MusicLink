@@ -9,11 +9,10 @@
         android:id="@+id/searchTextView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
         android:hint="@string/search_for_a_song_here"
         android:iconifiedByDefault="true"
-        android:padding="10dp">
-    </AutoCompleteTextView>
+        android:inputType="text"
+        android:padding="10dp" />
 
     <ListView
         android:id="@+id/listSearchedSongs"

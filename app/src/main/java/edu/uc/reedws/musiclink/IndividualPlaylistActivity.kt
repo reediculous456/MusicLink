@@ -10,7 +10,7 @@ import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.main_activity.*
 
 class IndividualPlaylistActivity : AppCompatActivity() {
-    private lateinit var mAdView : AdView
+    private lateinit var mAdView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
