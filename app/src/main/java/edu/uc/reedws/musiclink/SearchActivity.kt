@@ -12,7 +12,7 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.search_screen)
+        setContentView(R.layout.search_view)
 
         MobileAds.initialize(this) {}
         mAdView = findViewById(R.id.adView)
