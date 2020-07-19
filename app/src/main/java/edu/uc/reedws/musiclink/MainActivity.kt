@@ -2,10 +2,8 @@ package edu.uc.reedws.musiclink
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.ListView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -21,15 +19,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+
         viewModel = ViewModelProvider(this).get(ApplicationViewModel::class.java)
 
-        val listView = findViewById<ListView>(R.id.listOfPlayLists)
+        val listView = findViewById<ListView>(R.id.listOfPlaylists)
 
-        viewModel.playlists.observe(this, Observer { playLists ->
+        viewModel.playlists.observe(this, Observer {playlists ->
             listView.adapter = ArrayAdapter(
                 this,
-                android.R.layout.simple_list_item_1, playLists
+                android.R.layout.simple_list_item_1, playlists
             )
+            listView.setOnItemClickListener { _: AdapterView<*>, _: View, i: Int, _: Long ->
+                val intent = Intent(this, IndividualPlaylistActivity::class.java)
+                intent.putExtra("playlist", listView.adapter.getItem(i).toString())
+                startActivity(intent)
+            }
         })
 
         if (savedInstanceState == null) {
@@ -38,27 +42,45 @@ class MainActivity : AppCompatActivity() {
                 .commitNow()
         }
 
-        // Opens Search Screen
-        searchButton.setOnClickListener {
-            val intent = Intent(this, SearchActivity::class.java)
-            startActivity(intent)
+        /** Navigation Bar for bottom of screen*/
+        bottomNav.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.search_menu -> {
+                    val intent = Intent(this, SearchActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.library_menu -> {
+                    true
+                }
+                R.id.profile_menu -> {
+                    true
+                }
+                R.id.settings_menu -> {
+                    true
+                }
+                else -> false
+            }
         }
 
-        // Opens Dialog Screen to add a playlist
+        /** Share functionality */
+        shareButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "type/plain"
+            intent.putExtra(Intent.EXTRA_TEXT, "This is example text.")
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Example Subject")
+            startActivity(Intent.createChooser(intent, "Share playlist"))
+        }
+        /** Opens Dialog Screen to add a playlist */
         val addPlaylistDialogBtn = findViewById<FloatingActionButton>(R.id.addPlaylistOrSongButton)
         addPlaylistDialogBtn.setOnClickListener {
-            showAlertDialog(viewModel)
-        }
-
-        // Opens the Main or Playlist Library Screen
-        libraryButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            showAddPlaylistDialog(viewModel)
         }
     }
 
-    // Method to show Dialog Screen for adding a new playlist
-    private fun showAlertDialog(viewModel: ApplicationViewModel) {
+    /** Show Dialog Screen for adding a new playlist */
+    private fun showAddPlaylistDialog(viewModel: ApplicationViewModel) {
+
         val addPlaylistDialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         addPlaylistDialogBuilder.setTitle("Enter name of playlist to create")
@@ -66,28 +88,16 @@ class MainActivity : AppCompatActivity() {
         val newPlaylistName = dialogLayout.findViewById<EditText>(R.id.newPlaylistName)
 
         addPlaylistDialogBuilder.setView(dialogLayout)
-
-        addPlaylistDialogBuilder.setPositiveButton("Done") { dialogInterface, i ->
-            if (newPlaylistName.length() > 0) {
-                Toast.makeText(
-                    applicationContext,
-                    "You added " + newPlaylistName.text.toString(),
-                    Toast.LENGTH_SHORT
-                ).show()
-
-                val newPlaylistName = newPlaylistName.text
-                viewModel.createPlaylist(newPlaylistName.toString())
-            } else {
-                Toast.makeText(
-                    applicationContext,
-                    "You have not entered anything",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+        addPlaylistDialogBuilder.setPositiveButton("Done") { _, _ ->
+            Toast.makeText(
+                applicationContext,
+                "You added " + newPlaylistName.text.toString(),
+                Toast.LENGTH_SHORT
+            ).show()
+            val newPlaylistName = newPlaylistName.text
+            viewModel.createPlaylist(newPlaylistName.toString())
         }
-        addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, id -> dialog.cancel() }
-
-
+        addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, _ -> dialog.cancel() }
         addPlaylistDialogBuilder.show()
     }
 }

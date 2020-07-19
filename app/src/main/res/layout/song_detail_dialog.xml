@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/songDetailDialog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imgViewSongPicture"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:contentDescription="@string/song_picture"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/UC_red">
+
+        <TextView
+            android:id="@+id/txtViewSongDetails"
+            android:layout_width="351dp"
+            android:layout_height="100dp"
+            android:text="@string/song_name" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/songShareBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:tint="@color/whiteTextOnBlackBackground"
+            app:srcCompat="@android:drawable/ic_menu_share" />
+    </LinearLayout>
+
+</LinearLayout>
