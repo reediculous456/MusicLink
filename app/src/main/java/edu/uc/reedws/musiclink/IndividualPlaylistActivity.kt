@@ -4,23 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.main_activity.*
 
 class IndividualPlaylistActivity : AppCompatActivity() {
-    private lateinit var mAdView: AdView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.playlist_song_view)
         val playListsLabelText = findViewById<TextView>(R.id.singlePlayListsLabel)
-
-        MobileAds.initialize(this) {}
-        mAdView = findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
 
         /** Changes title of the screen to clicked playlist name*/
         playListsLabelText.text = intent.extras?.getString("playlist")
