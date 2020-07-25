@@ -24,4 +24,5 @@
     <string name="song_picture">Song Picture</string>
     <string name="song_name">Song name</string>
     <string name="search_for_a_song_here">Search for a song here...</string>
+    <string name="profile">Profile</string>
 </resources>
