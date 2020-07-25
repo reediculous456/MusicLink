@@ -54,6 +54,8 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.profile_menu -> {
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.settings_menu -> {

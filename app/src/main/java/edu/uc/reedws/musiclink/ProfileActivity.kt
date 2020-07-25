@@ -20,6 +20,8 @@ class ProfileActivity : AppCompatActivity() {
                     true
                 }
                 R.id.library_menu -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.profile_menu -> {
