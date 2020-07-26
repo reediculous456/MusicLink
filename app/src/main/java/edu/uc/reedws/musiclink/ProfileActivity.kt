@@ -2,14 +2,11 @@ package edu.uc.reedws.musiclink
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.change_email_dialog.*
-import kotlinx.android.synthetic.main.change_name_dialog.*
 import kotlinx.android.synthetic.main.main_activity.bottomNav
 import kotlinx.android.synthetic.main.profile_view.*
 
@@ -18,6 +15,12 @@ class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile_view)
+        val profileNameText = findViewById<TextView>(R.id.txtPersonName)
+        val emailAddressText = findViewById<TextView>(R.id.txtEmailAddress)
+
+        /** Changes the text views to previously set text*/
+        profileNameText.text = intent.extras?.getString("profileName")
+        emailAddressText.text = intent.extras?.getString("emailAddress")
 
         /** Navigation Bar for bottom of screen*/
         bottomNav.setOnNavigationItemSelectedListener {
@@ -65,6 +68,8 @@ class ProfileActivity : AppCompatActivity() {
         changeNameDialogBuilder.setView(dialogLayout)
         changeNameDialogBuilder.setPositiveButton("Done") { _, _ ->
             txtPersonName.text = newName.text
+            val intent = Intent(this, ProfileActivity::class.java)
+            intent.putExtra("profileName", txtPersonName.text)
         }
         changeNameDialogBuilder.setNeutralButton("Cancel") { dialog, _ -> dialog.cancel() }
         changeNameDialogBuilder.show()
@@ -82,6 +87,8 @@ class ProfileActivity : AppCompatActivity() {
         changeEmailDialogBuilder.setView(dialogLayout)
         changeEmailDialogBuilder.setPositiveButton("Done") { _, _ ->
             txtEmailAddress.text = newEmail.text
+            val intent = Intent(this, ProfileActivity::class.java)
+            intent.putExtra("emailAddress", txtEmailAddress.text)
         }
         changeEmailDialogBuilder.setNeutralButton("Cancel") { dialog, _ -> dialog.cancel() }
         changeEmailDialogBuilder.show()
