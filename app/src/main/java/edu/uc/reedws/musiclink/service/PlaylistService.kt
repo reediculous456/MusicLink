@@ -22,7 +22,7 @@ class PlaylistService(application: Application) {
         return localPlaylistDAO.getPlaylists()
     }
 
-    suspend fun createPlaylist(name: String): PlaylistDTO {
+     fun createPlaylist(name: String): PlaylistDTO {
         var playlist = PlaylistDTO(name)
         try {
             savePlaylist(playlist)
@@ -32,7 +32,7 @@ class PlaylistService(application: Application) {
         return playlist
     }
 
-    private suspend fun savePlaylist(playlist: PlaylistDTO) {
+    private fun savePlaylist(playlist: PlaylistDTO) {
         try {
             localPlaylistDAO.savePlaylist(playlist!!)
         } catch (e: Exception) {
