@@ -3,6 +3,8 @@
     package="edu.uc.reedws.musiclink">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera2" android:required="false"/>
 
     <uses-feature android:name="android.hardware.type.watch" />
 

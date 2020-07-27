@@ -27,7 +27,7 @@
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/avatarPhotoView"
         android:layout_width="match_parent"
         android:layout_height="168dp"
         android:contentDescription="@string/profile_photo"

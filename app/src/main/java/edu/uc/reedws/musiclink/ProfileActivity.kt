@@ -1,16 +1,26 @@
 package edu.uc.reedws.musiclink
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.media.Image
+import android.net.Uri
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.provider.MediaStore
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.main_activity.bottomNav
 import kotlinx.android.synthetic.main.profile_view.*
+import java.net.URI
 
 class ProfileActivity : AppCompatActivity() {
+
+    private val CAMERA_PERMISSION_REQUEST_CODE = 2000
+    private val CAMERA_REQUEST_CODE = 2001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +63,60 @@ class ProfileActivity : AppCompatActivity() {
         val changeEmailBtn = findViewById<Button>(R.id.btnChangeEmail)
         changeEmailBtn.setOnClickListener {
             showChangeEmailDialog()
+        }
+        /** Opens the camera to take a picture for the profile photo*/
+        val photoBtn = findViewById<FloatingActionButton>(R.id.btnCamera)
+        photoBtn.setOnClickListener {
+            prepTakePhoto()
+        }
+    }
+
+    /** Check for permission*/
+    private fun prepTakePhoto() {
+        if (ContextCompat.checkSelfPermission(applicationContext!!, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            takePhoto()
+        }
+        else {
+            val permissionRequest = arrayOf(Manifest.permission.CAMERA)
+            requestPermissions(permissionRequest, CAMERA_PERMISSION_REQUEST_CODE)
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode) {
+            CAMERA_PERMISSION_REQUEST_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    takePhoto()
+                }
+                else {
+                    Toast.makeText(applicationContext, "Unable to take photo without permission", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+    private fun takePhoto() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also{
+            takePictureIntent -> takePictureIntent.resolveActivity(applicationContext!!.packageManager)?.also{
+            startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE)
+            }
+        }
+    }
+
+    /** Sets the image view to the picture the camera took*/
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == CAMERA_REQUEST_CODE) {
+            val photoTaken = data!!.extras!!.get("data") as Bitmap
+            avatarPhotoView.setImageBitmap(photoTaken)
+        }
+        else {
+            Toast.makeText(applicationContext, "Unable to set photo", Toast.LENGTH_LONG).show()
         }
     }
 
