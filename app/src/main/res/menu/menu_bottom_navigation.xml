@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/search_menu"
         android:icon="@android:drawable/ic_menu_search"
-        android:title="@string/search" />
+        android:title="@string/search"
+        app:showAsAction="withText" />
 
-    <item android:id="@+id/library_menu"
+    <item
+        android:id="@+id/library_menu"
+        android:icon="@drawable/ic_library"
         android:title="@string/library"
-        android:icon="@drawable/ic_library"/>
+        app:showAsAction="withText" />
 
-    <item android:id="@+id/profile_menu"
+    <item
+        android:id="@+id/profile_menu"
+        android:icon="@drawable/ic_profile"
+        android:textColor="#FFFFFF"
         android:title="@string/profile"
-        android:icon="@drawable/ic_profile"/>
+        app:showAsAction="withText" />
 
-    <item android:id="@+id/settings_menu"
+    <item
+        android:id="@+id/settings_menu"
+        android:backgroundTint="@color/black"
+        android:icon="@drawable/ic_settings"
+        android:iconTint="#BA1010"
+        android:iconTintMode="screen"
         android:title="@string/settings"
-        android:icon="@drawable/ic_settings"/>
+        app:showAsAction="withText" />
 
 </menu>

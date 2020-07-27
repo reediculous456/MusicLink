@@ -8,5 +8,3 @@ import edu.uc.reedws.musiclink.dto.PlaylistDTO
 abstract class AppDatabase : RoomDatabase() {
     abstract fun localPlaylistDAO(): ILocalPlaylistDAO
 }
-
-//Adding note so GitHub will let me make an initial commit
