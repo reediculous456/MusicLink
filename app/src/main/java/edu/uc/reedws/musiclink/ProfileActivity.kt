@@ -4,8 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.media.Image
-import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.*
@@ -15,7 +13,6 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.main_activity.bottomNav
 import kotlinx.android.synthetic.main.profile_view.*
-import java.net.URI
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -71,7 +68,7 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    /** Check for permission*/
+    /** Check for permissions to use camera*/
     private fun prepTakePhoto() {
         if (ContextCompat.checkSelfPermission(applicationContext!!, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             takePhoto()
