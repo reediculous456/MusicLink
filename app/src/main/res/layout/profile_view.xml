@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/profileView"
     android:layout_width="match_parent"
@@ -11,10 +10,6 @@
 
     <TextView
         android:id="@+id/profile_label"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
@@ -24,7 +19,11 @@
         android:text="@string/profile"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/whiteTextOnBlackBackground"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/avatarPhotoView"
@@ -60,17 +59,17 @@
             android:layout_height="63dp"
             android:autofillHints="Enter your profile name here..."
             android:ems="10"
-            android:padding="20dp"
             android:hint="@string/enter_your_profile_name_here"
+            android:padding="20dp"
             android:text="@string/name"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnChangeName"
             android:layout_width="0dp"
             android:layout_height="75dp"
-            android:layout_weight="1"
             android:layout_marginEnd="15dp"
+            android:layout_weight="1"
             android:background="@color/black"
             android:text="@string/change_name"
             android:textColor="@color/whiteTextOnBlackBackground" />
@@ -89,10 +88,10 @@
             android:layout_height="wrap_content"
             android:autofillHints="Enter your email address here..."
             android:ems="10"
-            android:padding="20dp"
             android:hint="@string/enter_your_email_address_here"
+            android:padding="20dp"
             android:text="@string/email"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnChangeEmail"

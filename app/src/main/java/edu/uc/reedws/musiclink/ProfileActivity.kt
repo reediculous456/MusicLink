@@ -70,10 +70,13 @@ class ProfileActivity : AppCompatActivity() {
 
     /** Check for permissions to use camera*/
     private fun prepTakePhoto() {
-        if (ContextCompat.checkSelfPermission(applicationContext!!, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(
+                applicationContext!!,
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
             takePhoto()
-        }
-        else {
+        } else {
             val permissionRequest = arrayOf(Manifest.permission.CAMERA)
             requestPermissions(permissionRequest, CAMERA_PERMISSION_REQUEST_CODE)
         }
@@ -85,22 +88,25 @@ class ProfileActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when(requestCode) {
+        when (requestCode) {
             CAMERA_PERMISSION_REQUEST_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     takePhoto()
-                }
-                else {
-                    Toast.makeText(applicationContext, "Unable to take photo without permission", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        "Unable to take photo without permission",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }
     }
 
     private fun takePhoto() {
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also{
-            takePictureIntent -> takePictureIntent.resolveActivity(applicationContext!!.packageManager)?.also{
-            startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE)
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            takePictureIntent.resolveActivity(applicationContext!!.packageManager)?.also {
+                startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE)
             }
         }
     }
@@ -111,8 +117,7 @@ class ProfileActivity : AppCompatActivity() {
         if (requestCode == CAMERA_REQUEST_CODE) {
             val photoTaken = data!!.extras!!.get("data") as Bitmap
             avatarPhotoView.setImageBitmap(photoTaken)
-        }
-        else {
+        } else {
             Toast.makeText(applicationContext, "Unable to set photo", Toast.LENGTH_LONG).show()
         }
     }
