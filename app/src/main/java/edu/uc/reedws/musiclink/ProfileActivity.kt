@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.profile_view.*
 class ProfileActivity : AppCompatActivity() {
 
     private const val CAMERA_PERMISSION_REQUEST_CODE = 2000
-    private val CAMERA_REQUEST_CODE = 2001
+    private const val CAMERA_REQUEST_CODE = 2001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
