@@ -53,6 +53,8 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.profile_menu -> {
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.settings_menu -> {
@@ -93,8 +95,8 @@ class MainActivity : AppCompatActivity() {
                 "You added " + newPlaylistName.text.toString(),
                 Toast.LENGTH_SHORT
             ).show()
-            val newPlaylistName = newPlaylistName.text
-            viewModel.createPlaylist(newPlaylistName.toString())
+            val newPlaylistNameText = newPlaylistName.text
+            viewModel.createPlaylist(newPlaylistNameText.toString())
         }
         addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, _ -> dialog.cancel() }
         addPlaylistDialogBuilder.show()
