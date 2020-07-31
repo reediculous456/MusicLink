@@ -27,7 +27,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.playlists.observe(this, Observer {playlists ->
             listView.adapter = ArrayAdapter(
                 this,
-                android.R.layout.simple_list_item_1, playl
+                android.R.layout.simple_list_item_1, playlists
+            )
             listView.setOnItemClickListener { _: AdapterView<*>, _: View, i: Int, _: Long ->
                 val intent = Intent(this, IndividualPlaylistActivity::class.java)
                 intent.putExtra("playlist", listView.adapter.getItem(i).toString())

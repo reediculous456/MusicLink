@@ -4,20 +4,33 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
+import com.firebase.ui.auth.AuthUI
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.main_activity.bottomNav
 import kotlinx.android.synthetic.main.profile_view.*
+import java.io.File
 
 class ProfileActivity : AppCompatActivity() {
 
     private val CAMERA_PERMISSION_REQUEST_CODE = 2000
     private val CAMERA_REQUEST_CODE = 2001
+    private val SAVE_IMAGE_REQUEST_CODE = 2002
+    private val AUTH_REQUEST_CODE = 2003
+
+    private var user: FirebaseUser? = null
+    private lateinit var currentPhotoPath: String
+    private var profilePhotoURI: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +79,44 @@ class ProfileActivity : AppCompatActivity() {
         photoBtn.setOnClickListener {
             prepTakePhoto()
         }
+        /** Opens the login screen*/
+        val loginBtn = findViewById<Button>(R.id.loginButton)
+        loginBtn.setOnClickListener {
+            login()
+        }
+        /** Opens the logout screen*/
+        val logoutBtn = findViewById<Button>(R.id.logoutButton)
+        logoutBtn.setOnClickListener {
+            logout()
+        }
+    }
+
+    private fun logout() {
+        if(user == null) {
+            Toast.makeText(applicationContext, "You are not logged in", Toast.LENGTH_LONG).show()
+        } else {
+            AuthUI.getInstance().signOut(applicationContext).addOnCompleteListener {
+                Toast.makeText(applicationContext, "Successfully logged out", Toast.LENGTH_LONG).show()
+                user = null
+            }
+        }
+    }
+
+    private fun login() {
+        if(user == null) {
+            val providers = arrayListOf(
+                AuthUI.IdpConfig.EmailBuilder().build()
+            )
+            startActivityForResult(
+                AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(providers).build(), AUTH_REQUEST_CODE
+            )
+        } else {
+            Toast.makeText(applicationContext, "Already logged in", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun onLogin() {
+        user = FirebaseAuth.getInstance().currentUser
     }
 
     /** Check for permissions to use camera*/
@@ -105,8 +156,12 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun takePhoto() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-            takePictureIntent.resolveActivity(applicationContext!!.packageManager)?.also {
-                startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE)
+            takePictureIntent.resolveActivity(applicationContext!!.packageManager)
+            val photoFile: File = createImageFile()
+            photoFile.also {
+                profilePhotoURI = FileProvider.getUriForFile(applicationContext, "edu.uc.reedws.musiclink.fileprovider", it)
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoFile)
+                startActivityForResult(takePictureIntent, SAVE_IMAGE_REQUEST_CODE)
             }
         }
     }
@@ -114,11 +169,20 @@ class ProfileActivity : AppCompatActivity() {
     /** Sets the image view to the picture the camera took*/
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == CAMERA_REQUEST_CODE) {
-            val photoTaken = data!!.extras!!.get("data") as Bitmap
-            avatarPhotoView.setImageBitmap(photoTaken)
-        } else {
-            Toast.makeText(applicationContext, "Unable to set photo", Toast.LENGTH_LONG).show()
+        when (requestCode) {
+            CAMERA_REQUEST_CODE -> {
+                val photoTaken = data!!.extras!!.get("data") as Bitmap
+                avatarPhotoView.setImageBitmap(photoTaken)
+            }
+            SAVE_IMAGE_REQUEST_CODE -> {
+                Toast.makeText(applicationContext, "Photo saved", Toast.LENGTH_LONG).show()
+            }
+            AUTH_REQUEST_CODE -> {
+                onLogin()
+            }
+            else -> {
+                Toast.makeText(applicationContext, "Unable to set photo", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -160,7 +224,10 @@ class ProfileActivity : AppCompatActivity() {
         changeEmailDialogBuilder.show()
     }
 
-    private fun showChangeDialog() {
-
+    private fun createImageFile(): File {
+        val storageDir: File? = applicationContext!!.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile("profilePhoto", ".jpg", storageDir).apply {
+            currentPhotoPath = absolutePath
+        }
     }
 }
