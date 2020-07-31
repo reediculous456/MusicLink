@@ -19,8 +19,8 @@ class IndividualPlaylistActivity : AppCompatActivity() {
         shareButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND)
             intent.type = "type/plain"
-            intent.putExtra(Intent.EXTRA_TEXT, "One of your friends shared a playlist with you through MusicLink!")
-            intent.putExtra(Intent.EXTRA_SUBJECT, "A friend shared a playlist using MusicLink!")
+            intent.putExtra(Intent.EXTRA_TEXT, R.string.share_action_text)
+            intent.putExtra(Intent.EXTRA_SUBJECT, R.string.share_action_subject)
             startActivity(Intent.createChooser(intent, "Share playlist"))
         }
 

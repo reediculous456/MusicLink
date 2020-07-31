@@ -94,8 +94,7 @@ class MainActivity : AppCompatActivity() {
                 "You added " + newPlaylistName.text.toString(),
                 Toast.LENGTH_SHORT
             ).show()
-            val playlistName = newPlaylistName.text
-            viewModel.createPlaylist(playlistName.toString())
+            viewModel.createPlaylist(newPlaylistName.text.toString())
         }
         addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, _ -> dialog.cancel() }
         addPlaylistDialogBuilder.show()
