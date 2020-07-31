@@ -51,10 +51,18 @@
     <ListView
         android:id="@+id/listOfSongs"
         android:layout_width="wrap_content"
-        android:layout_height="430dp"
+        android:layout_height="400dp"
         android:dividerHeight="1dp"
         android:verticalSpacing="4dp">
     </ListView>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/shareButton"
