@@ -13,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9008375399239349~8007005113"/>
         <activity android:name=".IndividualPlaylistActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
