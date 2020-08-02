@@ -137,7 +137,6 @@ class ProfileActivity : AppCompatActivity() {
         if(user != null) {
             profilePhotoRemoteURI = user!!.photoUrl
             if(profilePhotoRemoteURI != null) {
-                Log.d(TAG, "profile photo url - $profilePhotoRemoteURI")
                 updateAvatar(profilePhotoRemoteURI.toString())
             }
         }
