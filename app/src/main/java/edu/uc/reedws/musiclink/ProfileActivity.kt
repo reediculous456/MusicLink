@@ -8,18 +8,27 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
+import android.content.ContentValues.TAG
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.lifecycle.ViewModelProvider
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
+import edu.uc.reedws.musiclink.ui.main.ApplicationViewModel
 import kotlinx.android.synthetic.main.main_activity.bottomNav
 import kotlinx.android.synthetic.main.profile_view.*
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import java.io.File
+import java.lang.Exception
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -28,12 +37,18 @@ class ProfileActivity : AppCompatActivity() {
     private val SAVE_IMAGE_REQUEST_CODE = 2002
     private val AUTH_REQUEST_CODE = 2003
 
-    private var user: FirebaseUser? = null
     private lateinit var currentPhotoPath: String
-    private var profilePhotoURI: Uri? = null
+    private lateinit var viewModel: ApplicationViewModel
+    private var user: FirebaseUser? = null
+    private var profilePhotoLocalURI: Uri? = null
+    private var profilePhotoRemoteURI: Uri? = null
+
+    private val scope = MainScope()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(ApplicationViewModel::class.java)
+
         setContentView(R.layout.profile_view)
         val profileNameText = findViewById<TextView>(R.id.txtPersonName)
         val emailAddressText = findViewById<TextView>(R.id.txtEmailAddress)
@@ -89,6 +104,8 @@ class ProfileActivity : AppCompatActivity() {
         logoutBtn.setOnClickListener {
             logout()
         }
+
+        onLogin()
     }
 
     private fun logout() {
@@ -117,6 +134,13 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun onLogin() {
         user = FirebaseAuth.getInstance().currentUser
+        if(user != null) {
+            profilePhotoRemoteURI = user!!.photoUrl
+            if(profilePhotoRemoteURI != null) {
+                Log.d(TAG, "profile photo url - $profilePhotoRemoteURI")
+                updateAvatar(profilePhotoRemoteURI.toString())
+            }
+        }
     }
 
     /** Check for permissions to use camera*/
@@ -155,11 +179,15 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun takePhoto() {
+        if(user == null) {
+            Toast.makeText(applicationContext, "You need to be logged in", Toast.LENGTH_LONG).show()
+            return
+        }
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             takePictureIntent.resolveActivity(applicationContext!!.packageManager)
             val photoFile: File = createImageFile()
             photoFile.also {
-                profilePhotoURI = FileProvider.getUriForFile(applicationContext, "edu.uc.reedws.musiclink.fileprovider", it)
+                profilePhotoLocalURI = FileProvider.getUriForFile(applicationContext, "edu.uc.reedws.musiclink.fileprovider", it)
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoFile)
                 startActivityForResult(takePictureIntent, SAVE_IMAGE_REQUEST_CODE)
             }
@@ -175,7 +203,8 @@ class ProfileActivity : AppCompatActivity() {
                 avatarPhotoView.setImageBitmap(photoTaken)
             }
             SAVE_IMAGE_REQUEST_CODE -> {
-                Toast.makeText(applicationContext, "Photo saved", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "New photo - $profilePhotoLocalURI", Toast.LENGTH_LONG).show()
+                onProfilePhotoUpdate()
             }
             AUTH_REQUEST_CODE -> {
                 onLogin()
@@ -184,6 +213,25 @@ class ProfileActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Unable to set photo", Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    private fun onProfilePhotoUpdate() {
+         scope.launch {
+             val downloadUri = viewModel.uploadProfilePhoto(profilePhotoLocalURI!!, user!!)
+             updateAvatar(downloadUri)
+         }
+    }
+
+    private fun updateAvatar(downloadUri: String) {
+        Picasso.get().load(downloadUri).into(avatarPhotoView, object: Callback {
+            override fun onSuccess() {
+                profilePhotoRemoteURI = Uri.parse(downloadUri)
+            }
+            override fun onError(e: Exception?) {
+                Log.e(TAG, e?.message);
+                Toast.makeText(applicationContext, "Could not load profile photo", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     /** Show Dialog Screen for changing the profile name */
