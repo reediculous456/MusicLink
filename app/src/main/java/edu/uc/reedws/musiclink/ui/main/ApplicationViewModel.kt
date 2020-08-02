@@ -6,12 +6,15 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.storage.FirebaseStorage
 import edu.uc.reedws.musiclink.dto.PlaylistDTO
+import edu.uc.reedws.musiclink.dto.SongDTO
 import edu.uc.reedws.musiclink.service.PlaylistService
+import edu.uc.reedws.musiclink.service.SpotifyService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -21,7 +24,11 @@ import kotlin.coroutines.suspendCoroutine
 
 class ApplicationViewModel(application: Application) : AndroidViewModel(application) {
     private var _playlistService: PlaylistService = PlaylistService(application)
+    private var _spotifyService: SpotifyService = SpotifyService()
+
     lateinit var playlists: LiveData<List<PlaylistDTO>>
+
+    var songSearch: MutableLiveData<List<SongDTO>> = MutableLiveData()
     private var storageRef = FirebaseStorage.getInstance().reference
 
     init {
@@ -73,6 +80,13 @@ class ApplicationViewModel(application: Application) : AndroidViewModel(applicat
     private fun fetchPlaylists() {
         viewModelScope.launch {
             playlists = _playlistService.fetchPlaylists()
+        }
+    }
+
+    fun searchSongsByName(name: String) {
+        viewModelScope.launch {
+            val tracks = _spotifyService.searchSongByName(name)
+            songSearch.postValue(tracks)
         }
     }
 }
