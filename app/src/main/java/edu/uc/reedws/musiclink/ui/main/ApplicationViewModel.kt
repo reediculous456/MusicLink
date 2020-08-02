@@ -15,7 +15,6 @@ import edu.uc.reedws.musiclink.dto.PlaylistDTO
 import edu.uc.reedws.musiclink.dto.SongDTO
 import edu.uc.reedws.musiclink.service.PlaylistService
 import edu.uc.reedws.musiclink.service.SpotifyService
-import kaaes.spotify.webapi.android.models.TracksPager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -30,6 +29,7 @@ class ApplicationViewModel(application: Application) : AndroidViewModel(applicat
     lateinit var playlists: LiveData<List<PlaylistDTO>>
 
     var songSearch: MutableLiveData<List<SongDTO>> = MutableLiveData()
+    private var storageRef = FirebaseStorage.getInstance().reference
 
     init {
         fetchPlaylists()
