@@ -12,9 +12,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import edu.uc.reedws.musiclink.ui.main.ApplicationViewModel
 import kotlinx.android.synthetic.main.search_view.*
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var viewModel: ApplicationViewModel
+    private lateinit var mAdView : AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +29,9 @@ class SearchActivity : AppCompatActivity() {
         })
 
         viewModel.searchSongsByName("test")
+      
+        mAdView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
     }
-
-
 }
