@@ -14,6 +14,10 @@
 
     </string-array>
     <string name="title_activity_search">SearchActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
     <string name="enter_name_of_playlist_here">Enter name of playlist here…</string>
     <string name="enter_the_text_here">Enter the text here</string>
     <string name="settings">Settings</string>
@@ -27,6 +31,8 @@
     <string name="change_name">Change Name</string>
     <string name="change_email">Change Email</string>
     <string name="profile_photo">Profile Photo</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
     <string name="share_action_text">One of your friends shared a playlist with you through MusicLink!</string>
     <string name="share_action_subject">A friend shared a playlist using MusicLink!</string>
 </resources>

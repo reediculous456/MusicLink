@@ -32,20 +32,59 @@
         android:contentDescription="@string/profile_photo"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnCamera"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="175dp"
-        android:backgroundTint="@color/black"
-        android:src="@android:drawable/ic_menu_camera"
-        android:tint="@color/whiteTextOnBlackBackground"
-        app:borderWidth="0dp"
-        app:elevation="4dp"
-        app:fabSize="normal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnCamera"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="175dp"
+            android:backgroundTint="@color/black"
+            android:src="@android:drawable/ic_menu_camera"
+            android:tint="@color/whiteTextOnBlackBackground"
+            app:borderWidth="0dp"
+            app:elevation="4dp"
+            app:fabSize="normal" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="101dp"
+            android:layout_height="58dp"
+            android:layout_gravity="end"
+            android:layout_marginStart="-140dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="175dp"
+            android:backgroundTint="@color/black"
+            android:text="@string/login"
+            android:textColor="@color/whiteTextOnBlackBackground"
+            app:borderWidth="0dp"
+            app:elevation="4dp"
+            app:fabSize="normal" />
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="100dp"
+            android:layout_height="58dp"
+            android:layout_gravity="end"
+            android:layout_marginStart="-150dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="175dp"
+            android:backgroundTint="@color/black"
+            android:text="@string/logout"
+            android:textColor="@color/whiteTextOnBlackBackground"
+            app:borderWidth="0dp"
+            app:elevation="4dp"
+            app:fabSize="normal" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
