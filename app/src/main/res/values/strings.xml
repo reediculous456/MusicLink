@@ -33,4 +33,6 @@
     <string name="profile_photo">Profile Photo</string>
     <string name="login">Login</string>
     <string name="logout">Logout</string>
+    <string name="share_action_text">One of your friends shared a playlist with you through MusicLink!</string>
+    <string name="share_action_subject">A friend shared a playlist using MusicLink!</string>
 </resources>

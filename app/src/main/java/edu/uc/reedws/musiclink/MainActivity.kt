@@ -8,6 +8,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import edu.uc.reedws.musiclink.ui.main.ApplicationViewModel
 import edu.uc.reedws.musiclink.ui.main.MainFragment
@@ -15,12 +18,19 @@ import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: ApplicationViewModel
+    private lateinit var mAdView : AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
         viewModel = ViewModelProvider(this).get(ApplicationViewModel::class.java)
+
+        MobileAds.initialize(this) {}
+
+        mAdView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
 
         val listView = findViewById<ListView>(R.id.listOfPlaylists)
 
@@ -96,8 +106,7 @@ class MainActivity : AppCompatActivity() {
                 "You added " + newPlaylistName.text.toString(),
                 Toast.LENGTH_SHORT
             ).show()
-            val newPlaylistNameText = newPlaylistName.text
-            viewModel.createPlaylist(newPlaylistNameText.toString())
+            viewModel.createPlaylist(newPlaylistName.text.toString())
         }
         addPlaylistDialogBuilder.setNeutralButton("Cancel") { dialog, _ -> dialog.cancel() }
         addPlaylistDialogBuilder.show()
