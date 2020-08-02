@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainScreen"
+    android:id="@+id/listSongView"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/black"
-    android:backgroundTint="@color/UC_red"
-    android:foregroundTint="@color/black"
-    android:orientation="vertical"
-    tools:context="edu.uc.reedws.musiclink.MainActivity">
+    android:background="@color/UC_red"
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
@@ -17,13 +13,14 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/playListsLabel"
-            android:layout_width="0dp"
+            android:id="@+id/singlePlayListsLabel"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="start"
             android:background="@color/black"
             android:gravity="center"
             android:padding="20dp"
-            android:text="@string/Playlists"
+            android:text="@string/Playlist"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/whiteTextOnBlackBackground"
             android:textStyle="bold"
@@ -46,18 +43,18 @@
             app:fabSize="auto"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/playListsLabel"
+            app:layout_constraintStart_toEndOf="@+id/singlePlayListsLabel"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/ic_input_add" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ListView
-        android:id="@+id/listOfPlaylists"
+        android:id="@+id/listOfSongs"
         android:layout_width="wrap_content"
         android:layout_height="430dp"
         android:dividerHeight="1dp"
-        android:verticalSpacing="4dp" />
+        android:verticalSpacing="4dp">
+    </ListView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/shareButton"
@@ -67,12 +64,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="-32dp"
         android:layout_marginEnd="20dp"
-        android:backgroundTint="@color/black"
         android:src="@android:drawable/ic_menu_share"
         android:tint="@color/whiteTextOnBlackBackground"
-        app:borderWidth="0dp"
-        app:elevation="4dp"
-        app:fabSize="normal" />
+        app:backgroundTint="@color/black" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
